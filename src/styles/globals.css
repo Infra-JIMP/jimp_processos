@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;600;700;900&family=Geist+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;600;700;900&family=Geist+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -22,7 +22,7 @@
   --color-white: #f0f4ff;
 
   --font-family-display: 'Bebas Neue', 'Impact', sans-serif;
-  --font-family-sans: 'Geist', system-ui, sans-serif;
+  --font-family-sans: 'DM Sans', 'Geist', system-ui, sans-serif;
   --font-family-mono: 'Geist Mono', 'Fira Code', monospace;
 }
 
@@ -35,11 +35,14 @@ html {
 }
 
 body {
-  font-family: 'Geist', system-ui, sans-serif;
+  font-family: 'DM Sans', 'Geist', system-ui, sans-serif;
   background: #004a55;
-  color: #e8edf7;
+  color: #dde6f0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.5;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 /* ─── Scrollbars ─────────────────────────────────────────── */
@@ -439,7 +442,28 @@ body {
 
 /* ─── Display font utility ───────────────────────────────── */
 .font-display { font-family: 'Bebas Neue', 'Impact', sans-serif; }
-.font-mono { font-family: 'Geist Mono', monospace; }
+.font-sans    { font-family: 'DM Sans', 'Geist', system-ui, sans-serif; }
+.font-mono    { font-family: 'Geist Mono', monospace; }
+
+/* ─── Type scale ─────────────────────────────────────────── */
+.text-2xs  { font-size: 10px; line-height: 1.4; }
+.text-xs   { font-size: 11px; line-height: 1.4; }
+.text-sm   { font-size: 12px; line-height: 1.5; }
+.text-base { font-size: 13px; line-height: 1.55; }
+.text-md   { font-size: 14px; line-height: 1.55; }
+.text-lg   { font-size: 16px; line-height: 1.4; }
+
+/* ─── Overline / label style ─────────────────────────────── */
+.overline {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(140,165,190,0.5);
+}
+
+/* ─── Tabular nums ───────────────────────────────────────── */
+.tabular { font-variant-numeric: tabular-nums; }
 
 /* ─── Gradient text ──────────────────────────────────────── */
 .text-gradient-blue {

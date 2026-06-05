@@ -646,15 +646,17 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
               background: 'linear-gradient(180deg, #003f4a 0%, #003540 100%)',
             }}>
               <th style={{
-                textAlign: 'left', padding: '13px 16px',
-                fontWeight: 700, fontSize: '10px', letterSpacing: '0.16em',
-                color: 'rgba(141,160,200,0.75)',
+                textAlign: 'left', padding: '12px 16px',
+                fontWeight: 700, fontSize: '10px', letterSpacing: '0.18em',
+                fontFamily: "'Geist Mono', monospace",
+                color: 'rgba(100,165,200,0.6)',
+                textTransform: 'uppercase',
                 position: 'sticky', left: 0, zIndex: 30,
                 background: '#003f4a',
                 minWidth: '200px',
-                borderRight: '2px solid rgba(0,188,212,0.15)',
+                borderRight: '1px solid rgba(255,255,255,0.06)',
               }}>
-                NS / CLIENTE
+                NS / Cliente
               </th>
               {stagesToShow.map((s, i) => {
                 const isActive = sortCol === s.id;
@@ -663,15 +665,16 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                     key={s.id}
                     onClick={() => handleSortClick(s.id)}
                     style={{
-                      padding: '11px 6px',
-                      fontWeight: 700, fontSize: '9px', letterSpacing: '0.06em',
-                      color: isActive ? '#748ffc' : 'rgba(148,166,220,0.85)',
+                      padding: '10px 6px',
+                      fontWeight: 600, fontSize: '10px', letterSpacing: '0.04em',
+                      fontFamily: "'DM Sans', 'Geist', sans-serif",
+                      color: isActive ? '#4ecdc4' : 'rgba(140,175,205,0.55)',
                       textAlign: 'center', minWidth: '76px',
                       whiteSpace: 'nowrap',
                       background: isActive
-                        ? 'linear-gradient(180deg, #004a58 0%, #003f4a 100%)'
+                        ? 'rgba(78,205,196,0.06)'
                         : 'linear-gradient(180deg, #003f4a 0%, #003540 100%)',
-                      borderLeft: i === 0 ? 'none' : '1px solid rgba(0,188,212,0.08)',
+                      borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.04)',
                       cursor: 'pointer',
                       userSelect: 'none',
                       transition: 'color 0.15s, background 0.15s',
@@ -680,20 +683,20 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                   >
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
                       <span>{s.label}</span>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', opacity: isActive ? 1 : 0.25, transition: 'opacity 0.15s' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', opacity: isActive ? 1 : 0.2, transition: 'opacity 0.15s' }}>
                         <svg width="7" height="4" viewBox="0 0 7 4" fill="none">
-                          <path d="M3.5 0L7 4H0L3.5 0Z" fill={isActive && sortDir === 'asc' ? '#748ffc' : 'rgba(148,166,220,0.5)'} />
+                          <path d="M3.5 0L7 4H0L3.5 0Z" fill={isActive && sortDir === 'asc' ? '#4ecdc4' : 'rgba(140,175,205,0.6)'} />
                         </svg>
                         <svg width="7" height="4" viewBox="0 0 7 4" fill="none">
-                          <path d="M3.5 4L0 0H7L3.5 4Z" fill={isActive && sortDir === 'desc' ? '#748ffc' : 'rgba(148,166,220,0.5)'} />
+                          <path d="M3.5 4L0 0H7L3.5 4Z" fill={isActive && sortDir === 'desc' ? '#4ecdc4' : 'rgba(140,175,205,0.6)'} />
                         </svg>
                       </div>
                     </div>
                     {isActive && (
                       <div style={{
-                        position: 'absolute', bottom: 0, left: '20%', right: '20%',
+                        position: 'absolute', bottom: 0, left: '15%', right: '15%',
                         height: '2px', borderRadius: '2px 2px 0 0',
-                        background: 'linear-gradient(90deg, #4c6ef5, #748ffc)',
+                        background: 'linear-gradient(90deg, #4ecdc4, #74b0fc)',
                       }} />
                     )}
                   </th>
@@ -727,10 +730,21 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <div style={{ minWidth: 0 }}>
-                        <p style={{ fontWeight: 700, color: '#f0f4ff', fontFamily: "'Geist Mono', monospace", fontSize: '13px', lineHeight: 1.2 }}>
+                        <p style={{
+                          fontWeight: 600, color: '#ddeeff',
+                          fontFamily: "'Geist Mono', monospace",
+                          fontSize: '12.5px', lineHeight: 1.2,
+                          letterSpacing: '0.02em',
+                        }}>
                           {record.ns}
                         </p>
-                        <p style={{ color: 'rgba(141,160,200,0.65)', fontSize: '11px', marginTop: '3px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '148px' }}>
+                        <p style={{
+                          color: 'rgba(140,170,195,0.5)',
+                          fontFamily: "'DM Sans', 'Geist', sans-serif",
+                          fontSize: '11px', fontWeight: 400,
+                          marginTop: '2px', whiteSpace: 'nowrap',
+                          overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '148px',
+                        }}>
                           {record.clientName}
                         </p>
                       </div>

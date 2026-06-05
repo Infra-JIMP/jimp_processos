@@ -26,78 +26,85 @@ function useCountUp(target: number, duration = 700) {
   return value;
 }
 
+const cardBase: React.CSSProperties = {
+  borderRadius: '14px',
+  padding: '22px 20px 18px',
+  overflow: 'hidden',
+  cursor: 'default',
+  background: 'linear-gradient(145deg, #005f70 0%, #004555 100%)',
+  border: '1px solid rgba(255,255,255,0.07)',
+  boxShadow: '0 2px 20px rgba(0,0,0,0.2)',
+};
+
 function CardTotal({ value }: { value: number }) {
   const count = useCountUp(value, 700);
-
   return (
-    <SpotlightCard
-      accentHue={220}
-            className="animate-slide-up"
-      style={{
-        borderRadius: '16px',
-        padding: '20px 22px',
-        overflow: 'hidden',
-        cursor: 'default',
-        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-        border: '1px solid rgba(76,110,245,0.22)',
-        boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(76,110,245,0.08)',
-      }}
-    >
-
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '6px' }}>
-        <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(116,143,252,0.6)' }}>
-          TOTAL NS
+    <SpotlightCard accentHue={220} className="animate-slide-up" style={cardBase}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '4px' }}>
+        <span style={{
+          fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em',
+          fontFamily: "'Geist Mono', monospace",
+          color: 'rgba(100,180,220,0.5)',
+          textTransform: 'uppercase',
+        }}>
+          Total NS
         </span>
-        <span className="font-display" style={{
-          fontSize: 'clamp(42px, 5vw, 56px)', lineHeight: 0.85,
-          color: '#f0f4ff', letterSpacing: '-0.01em',
+        <span className="font-display tabular" style={{
+          fontSize: 'clamp(46px, 5.5vw, 60px)', lineHeight: 0.9,
+          color: '#e8f4ff', letterSpacing: '0.02em',
         }}>
           {count}
         </span>
-        <span style={{ fontSize: '11px', color: 'rgba(116,143,252,0.45)', fontWeight: 500 }}>
+        <span style={{
+          fontSize: '11px', fontWeight: 400,
+          fontFamily: "'DM Sans', 'Geist', sans-serif",
+          color: 'rgba(140,175,205,0.45)',
+          marginTop: '2px',
+        }}>
           registros
         </span>
       </div>
-
     </SpotlightCard>
   );
 }
 
-function CardProducao({ value }: { value: number; total: number }) {
+function CardProducao({ value }: { value: number }) {
   const count = useCountUp(value, 750);
-
   return (
-    <SpotlightCard
-      accentHue={20}
-            className="animate-slide-up"
-      style={{
-        animationDelay: '60ms',
-        borderRadius: '16px',
-        padding: '20px 22px',
-        overflow: 'hidden',
-        cursor: 'default',
-        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-        border: '1px solid rgba(255,107,53,0.22)',
-        boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,107,53,0.06)',
-      }}
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '6px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(255,107,53,0.7)' }}>
-            EM PRODUÇÃO
+    <SpotlightCard accentHue={20} className="animate-slide-up" style={{ ...cardBase, animationDelay: '60ms', border: '1px solid rgba(255,107,53,0.12)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '4px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+          <span style={{
+            fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em',
+            fontFamily: "'Geist Mono', monospace",
+            color: 'rgba(255,130,60,0.6)',
+            textTransform: 'uppercase',
+          }}>
+            Em Produção
           </span>
-          <div style={{ position: 'relative', width: '6px', height: '6px' }}>
-            <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#ff6b35', animation: value > 0 ? 'pulseDot 1.8s ease-in-out infinite' : 'none' }} />
-            <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#ff6b35' }} />
-          </div>
+          {value > 0 && (
+            <div style={{ position: 'relative', width: '6px', height: '6px', flexShrink: 0 }}>
+              <div style={{
+                position: 'absolute', inset: '-3px', borderRadius: '50%',
+                background: 'rgba(255,107,53,0.2)',
+                animation: 'pulseDot 1.8s ease-in-out infinite',
+              }} />
+              <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#ff6b35' }} />
+            </div>
+          )}
         </div>
-        <span className="font-display" style={{
-          fontSize: 'clamp(42px, 5vw, 56px)', lineHeight: 0.85,
-          color: '#f0f4ff', letterSpacing: '-0.01em',
+        <span className="font-display tabular" style={{
+          fontSize: 'clamp(46px, 5.5vw, 60px)', lineHeight: 0.9,
+          color: '#ffe0cc', letterSpacing: '0.02em',
         }}>
           {count}
         </span>
-        <span style={{ fontSize: '11px', color: 'rgba(255,107,53,0.45)', fontWeight: 500 }}>
+        <span style={{
+          fontSize: '11px', fontWeight: 400,
+          fontFamily: "'DM Sans', 'Geist', sans-serif",
+          color: 'rgba(255,130,60,0.35)',
+          marginTop: '2px',
+        }}>
           em andamento
         </span>
       </div>
@@ -105,35 +112,33 @@ function CardProducao({ value }: { value: number; total: number }) {
   );
 }
 
-function CardConcluidos({ value }: { value: number; total: number }) {
+function CardConcluidos({ value }: { value: number }) {
   const count = useCountUp(value, 800);
-
   return (
-    <SpotlightCard
-      accentHue={155}
-            className="animate-slide-up"
-      style={{
-        animationDelay: '120ms',
-        borderRadius: '16px',
-        padding: '20px 22px',
-        overflow: 'hidden',
-        cursor: 'default',
-        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-        border: '1px solid rgba(16,185,129,0.2)',
-        boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(16,185,129,0.06)',
-      }}
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '6px' }}>
-        <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(16,185,129,0.6)' }}>
-          CONCLUÍDOS
+    <SpotlightCard accentHue={155} className="animate-slide-up" style={{ ...cardBase, animationDelay: '120ms', border: '1px solid rgba(16,185,129,0.1)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '4px' }}>
+        <span style={{
+          fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em',
+          fontFamily: "'Geist Mono', monospace",
+          color: 'rgba(16,185,129,0.55)',
+          textTransform: 'uppercase',
+        }}>
+          Concluídos
         </span>
-        <span className="font-display" style={{
-          fontSize: 'clamp(42px, 5vw, 56px)', lineHeight: 0.85,
-          color: '#f0f4ff', letterSpacing: '-0.01em',
+        <span className="font-display tabular" style={{
+          fontSize: 'clamp(46px, 5.5vw, 60px)', lineHeight: 0.9,
+          color: value > 0 ? '#a7f3d0' : 'rgba(230,240,250,0.25)',
+          letterSpacing: '0.02em',
+          transition: 'color 0.4s',
         }}>
           {count}
         </span>
-        <span style={{ fontSize: '11px', color: 'rgba(16,185,129,0.45)', fontWeight: 500 }}>
+        <span style={{
+          fontSize: '11px', fontWeight: 400,
+          fontFamily: "'DM Sans', 'Geist', sans-serif",
+          color: 'rgba(16,185,129,0.3)',
+          marginTop: '2px',
+        }}>
           finalizados
         </span>
       </div>
@@ -141,37 +146,33 @@ function CardConcluidos({ value }: { value: number; total: number }) {
   );
 }
 
-function CardAguardando({ value }: { value: number; total: number }) {
+function CardAguardando({ value }: { value: number }) {
   const count = useCountUp(value, 850);
-
   return (
-    <SpotlightCard
-      accentHue={230}
-            className="animate-slide-up"
-      style={{
-        animationDelay: '180ms',
-        borderRadius: '16px',
-        padding: '20px 22px',
-        overflow: 'hidden',
-        cursor: 'default',
-        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-        border: '1px solid rgba(116,143,252,0.18)',
-        boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(116,143,252,0.06)',
-      }}
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '6px' }}>
-        <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(116,143,252,0.5)' }}>
-          AGUARDANDO
+    <SpotlightCard accentHue={230} className="animate-slide-up" style={{ ...cardBase, animationDelay: '180ms' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '4px' }}>
+        <span style={{
+          fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em',
+          fontFamily: "'Geist Mono', monospace",
+          color: 'rgba(100,150,200,0.45)',
+          textTransform: 'uppercase',
+        }}>
+          Aguardando
         </span>
-        <span className="font-display" style={{
-          fontSize: 'clamp(42px, 5vw, 56px)', lineHeight: 0.85,
-          color: '#f0f4ff', letterSpacing: '-0.01em',
-          opacity: value === 0 ? 0.4 : 1,
-          transition: 'opacity 0.3s',
+        <span className="font-display tabular" style={{
+          fontSize: 'clamp(46px, 5.5vw, 60px)', lineHeight: 0.9,
+          color: value === 0 ? 'rgba(230,240,250,0.2)' : '#c5d8f0',
+          letterSpacing: '0.02em',
+          transition: 'color 0.3s',
         }}>
           {count}
         </span>
-        <span style={{ fontSize: '11px', color: 'rgba(116,143,252,0.35)', fontWeight: 500 }}>
+        <span style={{
+          fontSize: '11px', fontWeight: 400,
+          fontFamily: "'DM Sans', 'Geist', sans-serif",
+          color: 'rgba(100,150,200,0.3)',
+          marginTop: '2px',
+        }}>
           na fila
         </span>
       </div>
@@ -191,15 +192,15 @@ export function StatsCards({ records }: StatsCardsProps) {
     <>
       <style>{`
         @keyframes pulseDot {
-          0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(255,107,53,0.4); }
-          50%       { transform: scale(1.2); opacity: 0.85; box-shadow: 0 0 0 6px rgba(255,107,53,0); }
+          0%, 100% { transform: scale(1); opacity: 0.6; }
+          50%       { transform: scale(2.5); opacity: 0; }
         }
       `}</style>
       <div className="stats-grid">
         <CardTotal      value={total} />
-        <CardProducao   value={emProducao} total={total} />
-        <CardConcluidos value={concluidos} total={total} />
-        <CardAguardando value={aguardando} total={total} />
+        <CardProducao   value={emProducao} />
+        <CardConcluidos value={concluidos} />
+        <CardAguardando value={aguardando} />
       </div>
     </>
   );

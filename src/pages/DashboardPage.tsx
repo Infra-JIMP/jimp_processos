@@ -107,17 +107,24 @@ export function DashboardPage() {
             onClick={() => setConfDropdown(v => !v)}
             style={{
               display: 'flex', alignItems: 'center', gap: '8px',
-              padding: '7px 12px', borderRadius: '10px', fontFamily: 'inherit', cursor: 'pointer',
-              background: confDropdown ? 'rgba(76,110,245,0.14)' : 'rgba(76,110,245,0.07)',
-              border: `1px solid ${confDropdown ? 'rgba(76,110,245,0.35)' : 'rgba(76,110,245,0.18)'}`,
+              padding: '7px 13px', borderRadius: '9px',
+              fontFamily: "'DM Sans', 'Geist', sans-serif",
+              cursor: 'pointer',
+              background: confDropdown ? 'rgba(78,205,196,0.1)' : 'rgba(255,255,255,0.05)',
+              border: `1px solid ${confDropdown ? 'rgba(78,205,196,0.25)' : 'rgba(255,255,255,0.08)'}`,
               transition: 'all 0.15s ease',
             }}
           >
-            <Calendar size={13} color="#748ffc" />
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#c5d0e8' }}>
+            <Calendar size={12} color={confDropdown ? '#4ecdc4' : 'rgba(140,175,205,0.5)'} />
+            <span style={{
+              fontSize: '13px', fontWeight: 500,
+              fontFamily: "'DM Sans', 'Geist', sans-serif",
+              color: confDropdown ? '#c8e8e0' : 'rgba(180,205,225,0.75)',
+              letterSpacing: '-0.01em',
+            }}>
               {activeConf ? activeConf.name : 'Todas as conferências'}
             </span>
-            <ChevronDown size={12} color="rgba(116,143,252,0.5)" style={{ transform: confDropdown ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.15s ease' }} />
+            <ChevronDown size={11} color="rgba(140,175,205,0.4)" style={{ transform: confDropdown ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.15s ease' }} />
           </button>
 
           {confDropdown && (
@@ -133,12 +140,12 @@ export function DashboardPage() {
             }}>
               <button
                 onClick={() => { setActiveConference(null); setConfDropdown(false); }}
-                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', fontFamily: 'inherit', cursor: 'pointer', background: !activeConferenceId ? 'rgba(76,110,245,0.12)' : 'transparent', border: 'none', borderBottom: '1px solid rgba(76,110,245,0.08)', transition: 'background 0.1s' }}
-                onMouseEnter={e => { if (activeConferenceId) e.currentTarget.style.background = 'rgba(76,110,245,0.06)'; }}
+                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 14px', fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', background: !activeConferenceId ? 'rgba(78,205,196,0.08)' : 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)', transition: 'background 0.1s' }}
+                onMouseEnter={e => { if (activeConferenceId) e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
                 onMouseLeave={e => { if (activeConferenceId) e.currentTarget.style.background = 'transparent'; }}
               >
-                <span style={{ fontSize: '12px', color: !activeConferenceId ? '#748ffc' : 'rgba(197,208,232,0.6)', fontWeight: !activeConferenceId ? 700 : 400 }}>Todas as conferências</span>
-                <span style={{ marginLeft: 'auto', fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: 'rgba(116,143,252,0.4)' }}>{records.length}</span>
+                <span style={{ fontSize: '12.5px', color: !activeConferenceId ? '#4ecdc4' : 'rgba(180,205,225,0.5)', fontWeight: !activeConferenceId ? 600 : 400 }}>Todas as conferências</span>
+                <span style={{ marginLeft: 'auto', fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: 'rgba(140,175,205,0.35)' }}>{records.length}</span>
               </button>
               {conferences.map(conf => {
                 const count = records.filter(r => r.conferenceId === conf.id).length;
@@ -149,13 +156,13 @@ export function DashboardPage() {
                     onMouseLeave={e => { const row = e.currentTarget.querySelector('.conf-delete-btn') as HTMLElement; if (row) row.style.opacity = '0'; }}
                   >
                     <button onClick={() => { setActiveConference(conf.id); setConfDropdown(false); }}
-                      style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', fontFamily: 'inherit', cursor: 'pointer', background: isActive ? 'rgba(76,110,245,0.12)' : 'transparent', border: 'none', transition: 'background 0.1s', paddingRight: '36px' }}
-                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(76,110,245,0.06)'; }}
+                      style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 14px', fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', background: isActive ? 'rgba(78,205,196,0.08)' : 'transparent', border: 'none', transition: 'background 0.1s', paddingRight: '36px' }}
+                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
                       onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
                     >
-                      <Calendar size={12} color={isActive ? '#748ffc' : 'rgba(116,143,252,0.35)'} />
-                      <span style={{ fontSize: '12px', color: isActive ? '#e8edf7' : 'rgba(197,208,232,0.6)', fontWeight: isActive ? 600 : 400, flex: 1, textAlign: 'left' }}>{conf.name}</span>
-                      <span style={{ fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: 'rgba(116,143,252,0.4)' }}>{count}</span>
+                      <Calendar size={12} color={isActive ? '#4ecdc4' : 'rgba(140,175,205,0.3)'} />
+                      <span style={{ fontSize: '12.5px', color: isActive ? '#c8e8e0' : 'rgba(180,205,225,0.55)', fontWeight: isActive ? 500 : 400, flex: 1, textAlign: 'left', letterSpacing: '-0.01em' }}>{conf.name}</span>
+                      <span style={{ fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: 'rgba(140,175,205,0.3)' }}>{count}</span>
                     </button>
                     <button
                       className="conf-delete-btn"
@@ -197,26 +204,25 @@ export function DashboardPage() {
           marginBottom: '10px', flexWrap: 'wrap',
         }}>
           {/* Active filter pills */}
-          {search && (
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 600, background: 'rgba(116,143,252,0.1)', border: '1px solid rgba(116,143,252,0.2)', color: '#748ffc' }}>
-              Busca: "{search}"
+          {[
+            search ? `Busca: "${search}"` : null,
+            contentFilters.size > 0 ? `${contentFilters.size} filtro${contentFilters.size > 1 ? 's' : ''}` : null,
+            visibleStages.size < STAGES.length ? `${visibleStages.size}/${STAGES.length} etapas` : null,
+            sortCol ? `${STAGES.find(s => s.id === sortCol)?.label} ${sortDir === 'asc' ? '↑' : '↓'}` : null,
+          ].filter(Boolean).map((label, i) => (
+            <span key={i} style={{
+              display: 'inline-flex', alignItems: 'center',
+              padding: '3px 9px', borderRadius: '6px',
+              fontSize: '11px', fontWeight: 500,
+              fontFamily: "'DM Sans','Geist',sans-serif",
+              background: 'rgba(78,205,196,0.08)',
+              border: '1px solid rgba(78,205,196,0.18)',
+              color: 'rgba(78,205,196,0.7)',
+              letterSpacing: '-0.01em',
+            }}>
+              {label}
             </span>
-          )}
-          {contentFilters.size > 0 && (
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 600, background: 'rgba(116,143,252,0.1)', border: '1px solid rgba(116,143,252,0.2)', color: '#748ffc' }}>
-              Conteúdo: {contentFilters.size} filtro{contentFilters.size > 1 ? 's' : ''}
-            </span>
-          )}
-          {visibleStages.size < STAGES.length && (
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 600, background: 'rgba(116,143,252,0.1)', border: '1px solid rgba(116,143,252,0.2)', color: '#748ffc' }}>
-              Etapas: {visibleStages.size}/{STAGES.length}
-            </span>
-          )}
-          {sortCol && (
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 600, background: 'rgba(116,143,252,0.1)', border: '1px solid rgba(116,143,252,0.2)', color: '#748ffc' }}>
-              Ordem: {STAGES.find(s => s.id === sortCol)?.label} {sortDir === 'asc' ? '↑' : '↓'}
-            </span>
-          )}
+          ))}
 
           <div style={{ flex: 1 }} />
 
@@ -294,26 +300,26 @@ export function DashboardPage() {
             style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(7,11,20,0.75)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', animation: 'fadeIn 0.15s ease both' }}
             onClick={e => { if (e.target === e.currentTarget) setConfirmDeleteConf(null); }}
           >
-            <div style={{ background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '16px', padding: '28px', maxWidth: '380px', width: '100%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
-                <Trash2 size={20} color="#ef4444" />
+            <div style={{ background: 'linear-gradient(145deg, #004555 0%, #003540 100%)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '14px', padding: '28px', maxWidth: '360px', width: '100%', boxShadow: '0 32px 80px rgba(0,0,0,0.55)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
+              <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                <Trash2 size={18} color="#f87171" />
               </div>
-              <h3 className="font-display" style={{ fontSize: '20px', color: '#f0f4ff', letterSpacing: '0.04em', marginBottom: '8px' }}>EXCLUIR CONFERÊNCIA</h3>
-              <p style={{ fontSize: '13px', color: 'rgba(141,160,200,0.55)', lineHeight: 1.65, marginBottom: '8px' }}>
-                A conferência <strong style={{ color: '#e8edf7' }}>"{conf?.name}"</strong> e todos os seus registros serão removidos permanentemente.
+              <h3 className="font-display" style={{ fontSize: '19px', color: '#dde6f0', letterSpacing: '0.06em', marginBottom: '10px' }}>EXCLUIR CONFERÊNCIA</h3>
+              <p style={{ fontSize: '13px', fontFamily: "'DM Sans','Geist',sans-serif", color: 'rgba(140,170,195,0.6)', lineHeight: 1.65, marginBottom: '6px' }}>
+                A conferência <strong style={{ color: '#c8dae8', fontWeight: 500 }}>"{conf?.name}"</strong> e todos os seus registros serão removidos permanentemente.
               </p>
-              <p style={{ fontSize: '13px', color: 'rgba(239,68,68,0.7)', lineHeight: 1.65, marginBottom: '24px' }}>
-                <strong style={{ fontFamily: "'Geist Mono', monospace" }}>{count}</strong> NS serão excluídos.
+              <p style={{ fontSize: '12px', fontFamily: "'DM Sans','Geist',sans-serif", color: 'rgba(248,113,113,0.6)', lineHeight: 1.65, marginBottom: '24px' }}>
+                <strong style={{ fontFamily: "'Geist Mono', monospace", color: '#f87171' }}>{count}</strong> NS serão excluídos.
               </p>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <button onClick={() => setConfirmDeleteConf(null)} style={{ flex: 1, padding: '10px', fontSize: '12px', fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer', borderRadius: '10px', background: 'rgba(76,110,245,0.08)', border: '1px solid rgba(76,110,245,0.18)', color: 'rgba(141,160,200,0.6)', transition: 'all 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(76,110,245,0.14)'; e.currentTarget.style.color = '#c5d0e8'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(76,110,245,0.08)'; e.currentTarget.style.color = 'rgba(141,160,200,0.6)'; }}>
+                <button onClick={() => setConfirmDeleteConf(null)} style={{ flex: 1, padding: '9px', fontSize: '13px', fontWeight: 500, fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', borderRadius: '9px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(160,190,215,0.6)', transition: 'all 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#c8dae8'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = 'rgba(160,190,215,0.6)'; }}>
                   Cancelar
                 </button>
-                <button onClick={handleDeleteConference} style={{ flex: 1, padding: '10px', fontSize: '12px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', borderRadius: '10px', background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.35)', color: '#ef4444', transition: 'all 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.25)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.15)'; }}>
+                <button onClick={handleDeleteConference} style={{ flex: 1, padding: '9px', fontSize: '13px', fontWeight: 500, fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', borderRadius: '9px', background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)', color: '#f87171', transition: 'all 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.2)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.12)'; }}>
                   Excluir
                 </button>
               </div>
@@ -328,23 +334,23 @@ export function DashboardPage() {
           style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(7,11,20,0.75)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', animation: 'fadeIn 0.15s ease both' }}
           onClick={e => { if (e.target === e.currentTarget) setConfirmClear(false); }}
         >
-          <div style={{ background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '16px', padding: '28px', maxWidth: '380px', width: '100%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
-              <Trash2 size={20} color="#ef4444" />
+          <div style={{ background: 'linear-gradient(145deg, #004555 0%, #003540 100%)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '14px', padding: '28px', maxWidth: '360px', width: '100%', boxShadow: '0 32px 80px rgba(0,0,0,0.55)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
+            <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+              <Trash2 size={18} color="#f87171" />
             </div>
-            <h3 className="font-display" style={{ fontSize: '20px', color: '#f0f4ff', letterSpacing: '0.04em', marginBottom: '8px' }}>LIMPAR TUDO</h3>
-            <p style={{ fontSize: '13px', color: 'rgba(141,160,200,0.55)', lineHeight: 1.65, marginBottom: '24px' }}>
-              Todos os <strong style={{ color: '#ef4444', fontFamily: "'Geist Mono', monospace" }}>{records.length}</strong> registros serão removidos permanentemente.
+            <h3 className="font-display" style={{ fontSize: '19px', color: '#dde6f0', letterSpacing: '0.06em', marginBottom: '10px' }}>LIMPAR TUDO</h3>
+            <p style={{ fontSize: '13px', fontFamily: "'DM Sans','Geist',sans-serif", color: 'rgba(140,170,195,0.6)', lineHeight: 1.65, marginBottom: '24px' }}>
+              Todos os <strong style={{ fontFamily: "'Geist Mono', monospace", color: '#f87171' }}>{records.length}</strong> registros serão removidos permanentemente.
             </p>
             <div style={{ display: 'flex', gap: '8px' }}>
-              <button onClick={() => setConfirmClear(false)} style={{ flex: 1, padding: '10px', fontSize: '12px', fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer', borderRadius: '10px', background: 'rgba(76,110,245,0.08)', border: '1px solid rgba(76,110,245,0.18)', color: 'rgba(141,160,200,0.6)', transition: 'all 0.15s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(76,110,245,0.14)'; e.currentTarget.style.color = '#c5d0e8'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(76,110,245,0.08)'; e.currentTarget.style.color = 'rgba(141,160,200,0.6)'; }}>
+              <button onClick={() => setConfirmClear(false)} style={{ flex: 1, padding: '9px', fontSize: '13px', fontWeight: 500, fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', borderRadius: '9px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(160,190,215,0.6)', transition: 'all 0.15s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#c8dae8'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = 'rgba(160,190,215,0.6)'; }}>
                 Cancelar
               </button>
-              <button onClick={handleClearAll} style={{ flex: 1, padding: '10px', fontSize: '12px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', borderRadius: '10px', background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.35)', color: '#ef4444', transition: 'all 0.15s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.25)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.15)'; }}>
+              <button onClick={handleClearAll} style={{ flex: 1, padding: '9px', fontSize: '13px', fontWeight: 500, fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', borderRadius: '9px', background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)', color: '#f87171', transition: 'all 0.15s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.2)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.12)'; }}>
                 Confirmar
               </button>
             </div>

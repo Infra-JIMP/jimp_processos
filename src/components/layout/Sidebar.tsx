@@ -31,19 +31,15 @@ function SidebarNavItem({ to, icon: Icon, label, desc, onClose, isBottom = false
         <div
           style={{
             display: 'flex', alignItems: 'center', gap: '10px',
-            padding: '9px 10px', borderRadius: '10px',
-            cursor: 'pointer', position: 'relative', overflow: 'hidden',
-            transition: 'background 0.15s ease',
-            background: isActive
-              ? 'linear-gradient(135deg, rgba(255,107,53,0.14) 0%, rgba(255,107,53,0.05) 100%)'
-              : 'transparent',
-            border: isActive
-              ? '1px solid rgba(255,107,53,0.2)'
-              : '1px solid transparent',
-            marginBottom: isBottom ? '0' : '2px',
+            padding: '8px 10px', borderRadius: '9px',
+            cursor: 'pointer', position: 'relative',
+            transition: 'background 0.12s ease, border-color 0.12s ease',
+            background: isActive ? 'rgba(255,107,53,0.1)' : 'transparent',
+            border: isActive ? '1px solid rgba(255,107,53,0.18)' : '1px solid transparent',
+            marginBottom: isBottom ? '0' : '1px',
           }}
           onMouseEnter={e => {
-            if (!isActive) (e.currentTarget as HTMLDivElement).style.background = 'rgba(76,110,245,0.07)';
+            if (!isActive) (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.04)';
           }}
           onMouseLeave={e => {
             if (!isActive) (e.currentTarget as HTMLDivElement).style.background = 'transparent';
@@ -52,7 +48,7 @@ function SidebarNavItem({ to, icon: Icon, label, desc, onClose, isBottom = false
           {/* Active bar */}
           {isActive && (
             <div style={{
-              position: 'absolute', left: 0, top: '25%', bottom: '25%', width: '2.5px',
+              position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '2px',
               borderRadius: '0 2px 2px 0',
               background: 'linear-gradient(180deg, #ff6b35, #ffa552)',
             }} />
@@ -60,27 +56,34 @@ function SidebarNavItem({ to, icon: Icon, label, desc, onClose, isBottom = false
 
           {/* Icon */}
           <div style={{
-            width: '30px', height: '30px', borderRadius: '8px', flexShrink: 0,
+            width: '28px', height: '28px', borderRadius: '7px', flexShrink: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: isActive ? 'rgba(255,107,53,0.15)' : 'rgba(76,110,245,0.07)',
-            border: `1px solid ${isActive ? 'rgba(255,107,53,0.2)' : 'rgba(76,110,245,0.1)'}`,
-            transition: 'all 0.15s ease',
+            background: isActive ? 'rgba(255,107,53,0.12)' : 'rgba(255,255,255,0.05)',
+            border: `1px solid ${isActive ? 'rgba(255,107,53,0.2)' : 'rgba(255,255,255,0.06)'}`,
+            transition: 'all 0.12s ease',
           }}>
-            <Icon size={14} color={isActive ? '#ff8c42' : '#748ffc'} />
+            <Icon size={13} color={isActive ? '#ff8c42' : 'rgba(180,210,230,0.55)'} />
           </div>
 
           {/* Text */}
           <div style={{ minWidth: 0 }}>
             <p style={{
-              fontSize: '13px', fontWeight: 600,
-              color: isActive ? '#ffa552' : 'rgba(255,255,255,0.85)',
-              lineHeight: 1.2, letterSpacing: '0.01em',
+              fontSize: '13px',
+              fontWeight: isActive ? 600 : 500,
+              fontFamily: "'DM Sans', 'Geist', sans-serif",
+              color: isActive ? '#ffc4a0' : 'rgba(220,235,245,0.8)',
+              lineHeight: 1.25,
+              letterSpacing: '-0.01em',
             }}>
               {label}
             </p>
             <p style={{
-              fontSize: '10px', color: 'rgba(141,160,200,0.4)',
-              marginTop: '1px', letterSpacing: '0.02em',
+              fontSize: '10.5px',
+              fontFamily: "'DM Sans', 'Geist', sans-serif",
+              color: isActive ? 'rgba(255,160,100,0.5)' : 'rgba(140,170,195,0.35)',
+              marginTop: '1px',
+              letterSpacing: '0',
+              fontWeight: 400,
             }}>
               {desc}
             </p>
@@ -97,7 +100,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       {isOpen && (
         <div
           className="fixed inset-0 z-20 lg:hidden"
-          style={{ background: 'rgba(10,25,45,0.85)' }}
+          style={{ background: 'rgba(0,20,30,0.75)' }}
           onClick={onClose}
         />
       )}
@@ -105,51 +108,58 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <aside
         className={`fixed top-0 left-0 h-full z-30 flex flex-col lg:static lg:z-auto lg:translate-x-0 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
         style={{
-          width: '220px', flexShrink: 0,
-          background: '#006a7a',
-          borderRight: '1px solid rgba(76,110,245,0.1)',
+          width: '212px', flexShrink: 0,
+          background: '#005060',
+          borderRight: '1px solid rgba(255,255,255,0.06)',
         }}
       >
         {/* Logo */}
         <div style={{
-          padding: '18px 16px 16px',
-          borderBottom: '1px solid rgba(76,110,245,0.08)',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '16px 14px 14px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          display: 'flex', alignItems: 'center', gap: '10px',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{
-              width: '34px', height: '34px', borderRadius: '9px',
-              background: 'rgba(255,107,53,0.12)',
-              border: '1px solid rgba(255,107,53,0.2)',
-              boxShadow: '0 0 20px rgba(255,107,53,0.2)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexShrink: 0, padding: '3px',
+          <div style={{
+            width: '32px', height: '32px', borderRadius: '8px',
+            background: 'rgba(255,107,53,0.1)',
+            border: '1px solid rgba(255,107,53,0.18)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
+          }}>
+            <Logo size={22} />
+          </div>
+          <div>
+            <p className="font-display" style={{
+              fontSize: '17px', color: '#e8f4ff',
+              lineHeight: 1, letterSpacing: '0.05em',
             }}>
-              <Logo size={26} />
-            </div>
-            <div>
-              <p className="font-display" style={{ fontSize: '18px', color: '#f0f4ff', lineHeight: 1, letterSpacing: '0.06em' }}>
-                GERENCIAL
-              </p>
-              <p style={{ fontSize: '9px', color: '#4c6ef5', letterSpacing: '0.18em', marginTop: '2px', fontWeight: 600 }}>
-                IMPLEMENTOS
-              </p>
-            </div>
+              GERENCIAL
+            </p>
+            <p style={{
+              fontSize: '9px',
+              fontFamily: "'Geist Mono', monospace",
+              color: 'rgba(78,205,196,0.6)',
+              letterSpacing: '0.2em', marginTop: '2px', fontWeight: 600,
+            }}>
+              IMPLEMENTOS
+            </p>
           </div>
         </div>
 
         {/* Nav label */}
-        <div style={{ padding: '16px 16px 6px' }}>
+        <div style={{ padding: '14px 14px 5px' }}>
           <span style={{
-            fontSize: '9px', letterSpacing: '0.22em',
-            color: 'rgba(116,143,252,0.35)', fontWeight: 700,
+            fontSize: '9px', letterSpacing: '0.2em',
+            fontFamily: "'Geist Mono', monospace",
+            color: 'rgba(140,170,195,0.3)', fontWeight: 600,
+            textTransform: 'uppercase',
           }}>
-            NAVEGAÇÃO
+            MENU
           </span>
         </div>
 
         {/* Main nav */}
-        <nav style={{ flex: 1, padding: '0 8px' }}>
+        <nav style={{ flex: 1, padding: '0 7px' }}>
           {navItems.map(item => (
             <SidebarNavItem key={item.to} {...item} onClose={onClose} />
           ))}
@@ -157,8 +167,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Bottom nav */}
         <div style={{
-          padding: '8px 8px 8px',
-          borderTop: '1px solid rgba(76,110,245,0.08)',
+          padding: '8px 7px 10px',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
         }}>
           {bottomItems.map(item => (
             <SidebarNavItem key={item.to} {...item} onClose={onClose} isBottom />

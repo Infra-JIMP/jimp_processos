@@ -13,7 +13,6 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
   const location = useLocation();
   const records = useAppStore(s => s.records);
 
-  // Build breadcrumb
   const crumbs: { label: string; to?: string }[] = [];
   if (location.pathname === '/') {
     crumbs.push({ label: 'Dashboard' });
@@ -28,75 +27,100 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
     const record = records.find(r => r.id === id);
     crumbs.push({ label: 'Dashboard', to: '/' });
     crumbs.push({ label: record ? `NS ${record.ns}` : 'Detalhe NS' });
+  } else if (location.pathname === '/pat-ofic') {
+    crumbs.push({ label: 'Dashboard', to: '/' });
+    crumbs.push({ label: 'PAT / OFIC' });
   }
+
+  const lastCrumb = crumbs[crumbs.length - 1];
 
   return (
     <header
       className="flex items-center gap-3 sticky top-0 z-10"
       style={{
-        height: '52px',
+        height: '50px',
         padding: '0 clamp(12px, 3vw, 20px)',
-        background: '#006a7a',
-        borderBottom: '1px solid rgba(76,110,245,0.1)',
+        background: '#005060',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
         minWidth: 0,
       }}
     >
       {/* Mobile menu button */}
       <button
         onClick={onMenuClick}
+        aria-label="Abrir menu"
         className="lg:hidden flex items-center justify-center"
         style={{
-          width: '30px', height: '30px', borderRadius: '7px',
-          border: '1px solid rgba(76,110,245,0.18)',
-          color: '#748ffc',
-          background: 'rgba(76,110,245,0.06)',
+          width: '28px', height: '28px', borderRadius: '7px',
+          border: '1px solid rgba(255,255,255,0.1)',
+          color: 'rgba(180,210,230,0.6)',
+          background: 'rgba(255,255,255,0.04)',
           flexShrink: 0, cursor: 'pointer',
         }}
       >
-        <Menu size={15} />
+        <Menu size={14} />
       </button>
 
       {/* Breadcrumb */}
-      <nav style={{ display: 'flex', alignItems: 'center', gap: '4px', flex: 1, minWidth: 0 }}>
-        {crumbs.map((crumb, i) => (
-          <React.Fragment key={i}>
-            {i > 0 && (
-              <ChevronRight size={11} color="rgba(141,160,200,0.25)" style={{ flexShrink: 0 }} />
-            )}
-            {crumb.to ? (
-              <Link
-                to={crumb.to}
-                style={{
-                  fontSize: i === 0 ? '12px' : '13px',
-                  fontWeight: i === 0 ? 400 : 600,
-                  color: 'rgba(141,160,200,0.45)',
-                  textDecoration: 'none',
-                  letterSpacing: i === crumbs.length - 1 ? '0.06em' : '0',
-                  fontFamily: i === crumbs.length - 1 ? "'Bebas Neue', sans-serif" : 'inherit',
-                  whiteSpace: 'nowrap',
-                  transition: 'color 0.15s',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'rgba(141,160,200,0.7)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(141,160,200,0.45)')}
-              >
-                {crumb.label}
-              </Link>
-            ) : (
-              <span
-                className={i === crumbs.length - 1 ? 'font-display' : ''}
-                style={{
-                  fontSize: i === crumbs.length - 1 ? '16px' : '12px',
-                  fontWeight: i === crumbs.length - 1 ? 700 : 400,
-                  color: i === crumbs.length - 1 ? '#f0f4ff' : 'rgba(141,160,200,0.45)',
-                  letterSpacing: i === crumbs.length - 1 ? '0.08em' : '0',
-                  whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-                }}
-              >
-                {crumb.label}
-              </span>
-            )}
-          </React.Fragment>
-        ))}
+      <nav style={{ display: 'flex', alignItems: 'center', gap: '5px', flex: 1, minWidth: 0 }}>
+        {crumbs.map((crumb, i) => {
+          const isLast = i === crumbs.length - 1;
+          return (
+            <React.Fragment key={i}>
+              {i > 0 && (
+                <ChevronRight size={10} color="rgba(140,170,195,0.2)" style={{ flexShrink: 0 }} />
+              )}
+              {crumb.to ? (
+                <Link
+                  to={crumb.to}
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    fontFamily: "'DM Sans', 'Geist', sans-serif",
+                    color: 'rgba(140,170,195,0.4)',
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap',
+                    transition: 'color 0.12s',
+                    letterSpacing: '0',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(180,210,230,0.65)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(140,170,195,0.4)')}
+                >
+                  {crumb.label}
+                </Link>
+              ) : (
+                <span
+                  className={isLast ? 'font-display' : ''}
+                  style={{
+                    fontSize: isLast ? '18px' : '12px',
+                    fontWeight: isLast ? 700 : 400,
+                    fontFamily: isLast ? "'Bebas Neue', sans-serif" : "'DM Sans', 'Geist', sans-serif",
+                    color: isLast ? '#dde6f0' : 'rgba(140,170,195,0.4)',
+                    letterSpacing: isLast ? '0.1em' : '0',
+                    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                    lineHeight: 1,
+                  }}
+                >
+                  {crumb.label}
+                </span>
+              )}
+            </React.Fragment>
+          );
+        })}
+
+        {/* Page subtitle hint for dashboard */}
+        {lastCrumb?.label === 'Dashboard' && (
+          <span style={{
+            marginLeft: '6px',
+            fontSize: '11px',
+            fontFamily: "'DM Sans', 'Geist', sans-serif",
+            color: 'rgba(78,205,196,0.4)',
+            fontWeight: 500,
+            letterSpacing: '0',
+          }}>
+            — Processos
+          </span>
+        )}
       </nav>
 
       <SyncIndicator />

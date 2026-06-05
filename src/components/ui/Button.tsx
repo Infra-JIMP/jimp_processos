@@ -12,33 +12,33 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const variantStyles: Record<Variant, React.CSSProperties> = {
   primary: {
     background: 'linear-gradient(135deg, #3b5bdb 0%, #4c6ef5 100%)',
-    border: '1px solid rgba(116,143,252,0.3)',
+    border: '1px solid rgba(116,143,252,0.25)',
     color: '#fff',
-    boxShadow: '0 2px 12px rgba(76,110,245,0.3)',
+    boxShadow: '0 2px 12px rgba(76,110,245,0.25)',
   },
   accent: {
     background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
-    border: '1px solid rgba(255,165,82,0.3)',
+    border: '1px solid rgba(255,140,66,0.25)',
     color: '#fff',
-    boxShadow: '0 2px 12px rgba(255,107,53,0.35)',
+    boxShadow: '0 2px 12px rgba(255,107,53,0.3)',
   },
   ghost: {
-    background: 'rgba(76,110,245,0.06)',
-    border: '1px solid rgba(76,110,245,0.2)',
-    color: '#8da0c8',
+    background: 'rgba(255,255,255,0.05)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    color: 'rgba(180,205,225,0.7)',
   },
   danger: {
     background: 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)',
-    border: '1px solid rgba(239,68,68,0.3)',
+    border: '1px solid rgba(239,68,68,0.25)',
     color: '#fff',
-    boxShadow: '0 2px 8px rgba(220,38,38,0.3)',
+    boxShadow: '0 2px 8px rgba(220,38,38,0.25)',
   },
 };
 
 const sizeStyles: Record<string, React.CSSProperties> = {
-  sm: { padding: '6px 12px', fontSize: '12px' },
+  sm: { padding: '5px 12px', fontSize: '12px' },
   md: { padding: '8px 16px', fontSize: '13px' },
-  lg: { padding: '12px 24px', fontSize: '14px' },
+  lg: { padding: '11px 24px', fontSize: '14px' },
 };
 
 export function Button({
@@ -58,14 +58,14 @@ export function Button({
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '8px',
-        fontWeight: 600,
-        borderRadius: '10px',
+        gap: '7px',
+        fontWeight: 500,
+        fontFamily: "'DM Sans', 'Geist', sans-serif",
+        borderRadius: '9px',
         cursor: disabled || loading ? 'not-allowed' : 'pointer',
-        opacity: disabled || loading ? 0.5 : 1,
+        opacity: disabled || loading ? 0.45 : 1,
         transition: 'all 0.15s ease',
-        fontFamily: 'inherit',
-        letterSpacing: '0.01em',
+        letterSpacing: '-0.01em',
         ...variantStyles[variant],
         ...sizeStyles[size],
         ...style,
@@ -73,7 +73,7 @@ export function Button({
       className={className}
       onMouseEnter={e => {
         if (disabled || loading) return;
-        (e.currentTarget as HTMLButtonElement).style.filter = 'brightness(1.12)';
+        (e.currentTarget as HTMLButtonElement).style.filter = 'brightness(1.1)';
         (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)';
       }}
       onMouseLeave={e => {
@@ -81,7 +81,7 @@ export function Button({
         (e.currentTarget as HTMLButtonElement).style.transform = '';
       }}
     >
-      {loading && <Loader2 size={14} style={{ animation: 'spin 1s linear infinite' }} />}
+      {loading && <Loader2 size={13} style={{ animation: 'spin 1s linear infinite' }} />}
       {children}
     </button>
   );
