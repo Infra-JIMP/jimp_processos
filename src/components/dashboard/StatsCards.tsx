@@ -63,9 +63,8 @@ function CardTotal({ value }: { value: number }) {
   );
 }
 
-function CardProducao({ value, total }: { value: number; total: number }) {
+function CardProducao({ value }: { value: number; total: number }) {
   const count = useCountUp(value, 750);
-  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
 
   return (
     <SpotlightCard
@@ -106,9 +105,8 @@ function CardProducao({ value, total }: { value: number; total: number }) {
   );
 }
 
-function CardConcluidos({ value, total }: { value: number; total: number }) {
+function CardConcluidos({ value }: { value: number; total: number }) {
   const count = useCountUp(value, 800);
-  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
 
   return (
     <SpotlightCard
@@ -143,9 +141,8 @@ function CardConcluidos({ value, total }: { value: number; total: number }) {
   );
 }
 
-function CardAguardando({ value, total }: { value: number; total: number }) {
+function CardAguardando({ value }: { value: number; total: number }) {
   const count = useCountUp(value, 850);
-  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
 
   return (
     <SpotlightCard
