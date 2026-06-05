@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import type { NSRecord } from '../../store/types';
 import { STAGES } from '../../utils/stages';
 import { NSDetailModal } from '../ui/NSDetailModal';
@@ -30,8 +30,8 @@ export function KanbanCard({ record }: KanbanCardProps) {
         onMouseLeave={() => setHovered(false)}
         style={{
           background: hovered
-            ? 'linear-gradient(135deg, #1e2a46 0%, #1a4a7a 100%)'
-            : 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+            ? 'linear-gradient(135deg, #1e2a46 0%, #005060 100%)'
+            : 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
           border: `1px solid ${hovered ? accent + '55' : 'rgba(76,110,245,0.14)'}`,
           borderLeft: `3px solid ${accent}`,
           borderRadius: '10px',

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { onSyncStatus, type SyncStatus } from '../../lib/sync';
 
 const CONFIG: Record<SyncStatus, { label: string; color: string; pulse: boolean; glow: string }> = {
@@ -69,7 +69,7 @@ export function SyncIndicator() {
       {showError && error && (
         <div style={{
           position: 'absolute', top: '100%', right: 0, marginTop: '6px',
-          background: '#133a5e', border: '1px solid rgba(248,113,113,0.2)',
+          background: '#003f4a', border: '1px solid rgba(248,113,113,0.2)',
           borderRadius: '8px', padding: '8px 12px', minWidth: '200px',
           fontSize: '11px', color: '#f87171', zIndex: 50,
           boxShadow: '0 4px 20px rgba(0,0,0,0.4)',

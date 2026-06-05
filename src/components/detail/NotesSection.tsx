@@ -32,7 +32,7 @@ export function NotesSection({ record }: NotesSectionProps) {
 
   return (
     <div style={{
-      background: 'linear-gradient(145deg, #162035 0%, #111928 100%)',
+      background: 'linear-gradient(145deg, #162035 0%, #00afc8 100%)',
       border: `1px solid ${focused ? 'rgba(76,110,245,0.28)' : 'rgba(76,110,245,0.1)'}`,
       borderRadius: '14px',
       overflow: 'hidden',

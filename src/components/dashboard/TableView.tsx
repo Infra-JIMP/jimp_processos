@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { STAGES } from '../../utils/stages';
 import type { NSRecord, StageStatus, StageEntry } from '../../store/types';
@@ -79,7 +79,7 @@ function PhotoTooltip({ stage, stageLabel, anchorRect }: PhotoTooltipProps) {
     <div
       style={{
         position: 'absolute', top, left, width: W, zIndex: 3000,
-        background: 'linear-gradient(145deg, #1a2640 0%, #133a5e 100%)',
+        background: 'linear-gradient(145deg, #005060 0%, #003f4a 100%)',
         border: '1px solid rgba(76,110,245,0.22)',
         borderRadius: '12px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(76,110,245,0.06)',
@@ -222,7 +222,7 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
       ref={popRef}
       style={{
         position: 'absolute', top, left, width: W, zIndex: 2000,
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: `1px solid ${color}44`,
         borderRadius: '14px',
         boxShadow: '0 20px 60px rgba(0,0,0,0.7)',
@@ -345,7 +345,7 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
           </div>
 
           {allPhotos.length > 0 && (
-            <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', background: '#0f2d4a' }}>
+            <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', background: '#006a7a' }}>
               <img src={allPhotos[photoIdx]} alt="" style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />
               {allPhotos.length > 1 && (
                 <>
@@ -416,7 +416,7 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
               key={record.id}
               style={{
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #1a4a7a 0%, #111928 100%)',
+                background: 'linear-gradient(135deg, #005060 0%, #003f4a 100%)',
                 border: '1px solid rgba(76,110,245,0.12)',
                 overflow: 'hidden',
                 transition: 'border-color 0.15s',
@@ -642,17 +642,17 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
         <table>
           <thead style={{ position: 'sticky', top: 0, zIndex: 20 }}>
             <tr style={{
-              borderBottom: '2px solid rgba(76,110,245,0.18)',
-              background: 'linear-gradient(180deg, #1a4a7a 0%, #133a5e 100%)',
+              borderBottom: '2px solid rgba(0,188,212,0.2)',
+              background: 'linear-gradient(180deg, #003f4a 0%, #003540 100%)',
             }}>
               <th style={{
                 textAlign: 'left', padding: '13px 16px',
                 fontWeight: 700, fontSize: '10px', letterSpacing: '0.16em',
                 color: 'rgba(141,160,200,0.75)',
                 position: 'sticky', left: 0, zIndex: 30,
-                background: '#1a4a7a',
+                background: '#003f4a',
                 minWidth: '200px',
-                borderRight: '2px solid rgba(76,110,245,0.18)',
+                borderRight: '2px solid rgba(0,188,212,0.15)',
               }}>
                 NS / CLIENTE
               </th>
@@ -669,9 +669,9 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                       textAlign: 'center', minWidth: '76px',
                       whiteSpace: 'nowrap',
                       background: isActive
-                        ? 'linear-gradient(180deg, #1f5288 0%, #1a4a7a 100%)'
-                        : 'linear-gradient(180deg, #1a4a7a 0%, #133a5e 100%)',
-                      borderLeft: i === 0 ? 'none' : '1px solid rgba(76,110,245,0.08)',
+                        ? 'linear-gradient(180deg, #004a58 0%, #003f4a 100%)'
+                        : 'linear-gradient(180deg, #003f4a 0%, #003540 100%)',
+                      borderLeft: i === 0 ? 'none' : '1px solid rgba(0,188,212,0.08)',
                       cursor: 'pointer',
                       userSelect: 'none',
                       transition: 'color 0.15s, background 0.15s',
@@ -710,8 +710,8 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                   key={record.id}
                   className="table-row"
                   style={{
-                    borderBottom: '1px solid rgba(76,110,245,0.07)',
-                    background: isEven ? 'rgba(255,255,255,0.015)' : 'transparent',
+                    borderBottom: '1px solid rgba(0,188,212,0.07)',
+                    background: isEven ? 'rgba(0,188,212,0.03)' : 'transparent',
                   }}
                 >
                   {/* NS / Cliente sticky column */}
@@ -720,8 +720,8 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                     style={{
                       padding: '10px 16px',
                       position: 'sticky', left: 0, zIndex: 5,
-                      background: isEven ? '#1a4a7a' : '#133a5e',
-                      borderRight: '2px solid rgba(76,110,245,0.12)',
+                      background: isEven ? '#003f4a' : '#003540',
+                      borderRight: '2px solid rgba(0,188,212,0.12)',
                       cursor: 'default',
                     }}
                   >

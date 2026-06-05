@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, Hash } from 'lucide-react';
+﻿import { ArrowLeft, Calendar, Hash } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ProgressRing } from '../ui/ProgressRing';
 import { STAGES } from '../../utils/stages';
@@ -23,7 +23,7 @@ export function NSDetailHeader({ record }: NSDetailHeaderProps) {
   return (
     <div
       style={{
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(76,110,245,0.18)',
         borderRadius: '16px',
         padding: '24px',

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+﻿import { useState, useMemo } from 'react';
 import { STAGES } from '../utils/stages';
 import type { StageId } from '../utils/stages';
 import { useNavigate } from 'react-router-dom';
@@ -124,7 +124,7 @@ export function DashboardPage() {
             <div style={{
               position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 100,
               minWidth: '220px',
-              background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+              background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
               border: '1px solid rgba(76,110,245,0.2)',
               borderRadius: '12px',
               boxShadow: '0 16px 48px rgba(0,0,0,0.5)',
@@ -294,7 +294,7 @@ export function DashboardPage() {
             style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(7,11,20,0.75)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', animation: 'fadeIn 0.15s ease both' }}
             onClick={e => { if (e.target === e.currentTarget) setConfirmDeleteConf(null); }}
           >
-            <div style={{ background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '16px', padding: '28px', maxWidth: '380px', width: '100%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
+            <div style={{ background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '16px', padding: '28px', maxWidth: '380px', width: '100%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
               <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
                 <Trash2 size={20} color="#ef4444" />
               </div>
@@ -328,7 +328,7 @@ export function DashboardPage() {
           style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(7,11,20,0.75)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', animation: 'fadeIn 0.15s ease both' }}
           onClick={e => { if (e.target === e.currentTarget) setConfirmClear(false); }}
         >
-          <div style={{ background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '16px', padding: '28px', maxWidth: '380px', width: '100%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
+          <div style={{ background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: '16px', padding: '28px', maxWidth: '380px', width: '100%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)', animation: 'scaleIn 0.2s cubic-bezier(0.16,1,0.3,1) both' }}>
             <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
               <Trash2 size={20} color="#ef4444" />
             </div>

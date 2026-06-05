@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { RecordPreview, useRecordPreview } from '../components/ui/RecordPreview';
 import { NSDetailModal } from '../components/ui/NSDetailModal';
@@ -123,7 +123,7 @@ function Section({
   return (
     <div style={{
       minWidth: 0,
-      background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+      background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
       border: `1px solid rgba(${accentRgb},0.18)`,
       borderRadius: '14px',
       overflow: 'hidden',

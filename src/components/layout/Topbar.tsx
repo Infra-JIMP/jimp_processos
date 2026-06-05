@@ -36,7 +36,7 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
       style={{
         height: '52px',
         padding: '0 clamp(12px, 3vw, 20px)',
-        background: '#0f2d4a',
+        background: '#006a7a',
         borderBottom: '1px solid rgba(76,110,245,0.1)',
         minWidth: 0,
       }}

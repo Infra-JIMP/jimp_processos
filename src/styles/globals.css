@@ -31,12 +31,12 @@
 }
 
 html {
-  background: #1a4a7a;
+  background: #004a55;
 }
 
 body {
   font-family: 'Geist', system-ui, sans-serif;
-  background: #1a4a7a;
+  background: #004a55;
   color: #e8edf7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,10 +44,10 @@ body {
 
 /* ─── Scrollbars ─────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: #133a5e; }
-::-webkit-scrollbar-thumb { background: #2e6aaa; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #4c6ef5; }
-* { scrollbar-width: thin; scrollbar-color: #2e6aaa #133a5e; }
+::-webkit-scrollbar-track { background: #003540; }
+::-webkit-scrollbar-thumb { background: #007a8a; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00bcd4; }
+* { scrollbar-width: thin; scrollbar-color: #007a8a #003540; }
 
 /* ─── Noise texture overlay ──────────────────────────────── */
 .noise::after {
@@ -299,8 +299,8 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: 14px;
-  border: 1px solid rgba(76,110,245,0.2);
-  background: #133a5e;
+  border: 1px solid rgba(0,188,212,0.25);
+  background: #003540;
   box-shadow: 0 4px 32px rgba(0,0,0,0.3);
 }
 .table-wrapper table {
@@ -472,7 +472,7 @@ body {
 
 /* ─── Glass card ─────────────────────────────────────────── */
 .glass {
-  background: rgba(19, 58, 94, 0.92);
+  background: rgba(0, 53, 64, 0.92);
 }
 
 /* ─── Mobile safe area ───────────────────────────────────── */

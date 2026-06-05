@@ -106,7 +106,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         className={`fixed top-0 left-0 h-full z-30 flex flex-col lg:static lg:z-auto lg:translate-x-0 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
         style={{
           width: '220px', flexShrink: 0,
-          background: '#0f2d4a',
+          background: '#006a7a',
           borderRight: '1px solid rgba(76,110,245,0.1)',
         }}
       >

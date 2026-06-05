@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, CheckCheck, Clock, PlayCircle, MapPin, History } from 'lucide-react';
 import { Badge } from '../ui/Badge';
 import { useAppStore } from '../../store/useAppStore';
@@ -77,7 +77,7 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
   return (
     <div
       style={{
-        background: hovered ? 'rgba(17,29,53,0.9)' : 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: hovered ? 'rgba(17,29,53,0.9)' : 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: `1px solid ${hovered ? border : 'rgba(76,110,245,0.12)'}`,
         borderLeft: `3px solid ${color}`,
         borderRadius: '12px',

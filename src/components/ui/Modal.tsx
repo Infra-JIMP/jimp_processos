@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 
 interface ModalProps {
@@ -53,7 +53,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
           position: 'relative', zIndex: 10,
           width: '100%', maxWidth: maxWidths[size],
           maxHeight: '95vh', overflowY: 'auto',
-          background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+          background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
           border: '1px solid rgba(76,110,245,0.22)',
           borderRadius: '16px 16px 0 0',
           boxShadow: '0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(76,110,245,0.1)',

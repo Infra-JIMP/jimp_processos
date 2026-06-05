@@ -68,7 +68,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 9999,
-      background: '#0f2d4a',
+      background: '#006a7a',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       padding: '32px',

@@ -47,7 +47,7 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
         className="ns-detail-modal"
         style={{
           position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 1001,
-          background: '#0f2d4a',
+          background: '#006a7a',
           borderLeft: '1px solid rgba(76,110,245,0.18)',
           boxShadow: '-24px 0 80px rgba(0,0,0,0.6)',
           display: 'flex', flexDirection: 'column',
@@ -60,7 +60,7 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
           display: 'flex', alignItems: 'center', gap: '10px',
           padding: '14px 20px',
           borderBottom: '1px solid rgba(76,110,245,0.1)',
-          background: '#0f2d4a',
+          background: '#006a7a',
           position: 'sticky', top: 0, zIndex: 10,
           flexShrink: 0,
         }}>

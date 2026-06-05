@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import type { NSRecord } from '../../store/types';
@@ -158,7 +158,7 @@ export function PatOficinaPanel({ records }: PatOficinaPanelProps) {
         marginBottom: '20px',
         borderRadius: '14px',
         border: '1px solid rgba(76,110,245,0.16)',
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         overflow: 'hidden',
         boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
       }}>

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { STAGES } from '../../utils/stages';
 import type { StageId } from '../../utils/stages';
@@ -71,9 +71,9 @@ function SelectField({
           onFocus={e => (e.target.style.borderColor = 'rgba(76,110,245,0.5)')}
           onBlur={e => (e.target.style.borderColor = 'rgba(76,110,245,0.22)')}
         >
-          {placeholder && <option value="" style={{ background: '#133a5e', color: '#8da0c8' }}>{placeholder}</option>}
+          {placeholder && <option value="" style={{ background: '#003f4a', color: '#8da0c8' }}>{placeholder}</option>}
           {options.map((opt) => (
-            <option key={opt} value={opt} style={{ background: '#133a5e', color: '#c5d0e8' }}>
+            <option key={opt} value={opt} style={{ background: '#003f4a', color: '#c5d0e8' }}>
               {opt}
             </option>
           ))}

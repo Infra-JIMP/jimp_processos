@@ -197,7 +197,7 @@ export function ReportsPage() {
                 style={{
                   background: isSelected
                     ? 'linear-gradient(135deg, rgba(76,110,245,0.08) 0%, rgba(76,110,245,0.04) 100%)'
-                    : 'linear-gradient(135deg, #162035 0%, #111928 100%)',
+                    : 'linear-gradient(135deg, #162035 0%, #00afc8 100%)',
                   border: `1px solid ${isSelected ? 'rgba(76,110,245,0.35)' : 'rgba(76,110,245,0.08)'}`,
                   borderRadius: '11px',
                   display: 'flex', alignItems: 'center', gap: '12px',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle2, ChevronRight, ArrowLeft, Calendar } from 'lucide-react';
 import { useExcelImport } from '../hooks/useExcelImport';
@@ -167,7 +167,7 @@ export function ImportPage() {
 
       {/* Card */}
       <div className="import-card" style={{
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(76,110,245,0.16)',
         borderRadius: '16px',
         boxShadow: '0 8px 40px rgba(0,0,0,0.4)',

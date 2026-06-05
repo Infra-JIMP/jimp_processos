@@ -1,4 +1,4 @@
-interface CardProps {
+﻿interface CardProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
@@ -11,7 +11,7 @@ export function Card({ children, className = '', onClick, style }: CardProps) {
       onClick={onClick}
       className={className}
       style={{
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(76,110,245,0.14)',
         borderRadius: '14px',
         boxShadow: '0 4px 24px rgba(0,0,0,0.35)',

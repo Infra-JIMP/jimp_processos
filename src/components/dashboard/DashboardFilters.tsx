@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+﻿import { useState, useRef, useEffect } from 'react';
 import { Search, X, SlidersHorizontal, CheckSquare, Square, MapPin, FileText, Camera } from 'lucide-react';
 import { STAGES } from '../../utils/stages';
 import type { StageId } from '../../utils/stages';
@@ -118,7 +118,7 @@ export function DashboardFilters({ search, onSearchChange, visibleStages, onVisi
             <div style={{
               position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 200,
               width: '220px',
-              background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+              background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
               border: '1px solid rgba(76,110,245,0.2)',
               borderRadius: '12px',
               boxShadow: '0 16px 48px rgba(0,0,0,0.5)',

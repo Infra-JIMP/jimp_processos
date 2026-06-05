@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, MessageSquare, X, ExternalLink, Camera, Image, ChevronRight } from 'lucide-react';
 import { STAGES } from '../../utils/stages';
@@ -113,7 +113,7 @@ function PhotoGrid({ photos, onAdd, onRemove, accentColor, accentBg }: PhotoGrid
               style={{
                 position: 'absolute', top: '-5px', right: '-5px',
                 width: '18px', height: '18px', borderRadius: '50%',
-                background: '#ef4444', border: '2px solid #133a5e',
+                background: '#ef4444', border: '2px solid #006a7a',
                 color: '#fff', cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 padding: 0,
@@ -226,7 +226,7 @@ function LocObsModal({ record, onClose }: LocObsModalProps) {
           position: 'relative', zIndex: 10,
           width: '100%', maxWidth: '480px',
           maxHeight: '90vh',
-          background: 'linear-gradient(160deg, #1a4a7a 0%, #133a5e 100%)',
+          background: 'linear-gradient(160deg, #005f70 0%, #004a58 100%)',
           border: '1px solid rgba(76,110,245,0.22)',
           borderRadius: '16px',
           boxShadow: '0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(76,110,245,0.08)',
@@ -310,7 +310,7 @@ function LocObsModal({ record, onClose }: LocObsModalProps) {
                     <span style={{
                       position: 'absolute', top: '-3px', right: '-3px',
                       width: '6px', height: '6px', borderRadius: '50%',
-                      background: '#ff6b35', border: '1px solid #133a5e',
+                      background: '#ff6b35', border: '1px solid #006a7a',
                     }} />
                   )}
                 </button>
@@ -490,7 +490,7 @@ function MobileListView({ records, onLocObsClick }: MobileListViewProps) {
         const stageLabel = stage.label;
         return (
         <div key={stageLabel} style={{
-          background: 'linear-gradient(180deg, #1a4a7a 0%, #133a5e 100%)',
+          background: 'linear-gradient(180deg, #005060 0%, #003f4a 100%)',
           border: '1px solid rgba(76,110,245,0.18)',
           borderRadius: '14px',
           overflow: 'hidden',
@@ -689,8 +689,8 @@ export function KanbanBoard({ records }: KanbanBoardProps) {
               onDrop={(e) => handleDrop(e, i)}
               style={{
                 background: isDragOver
-                  ? 'linear-gradient(180deg, #162040 0%, #1a4a7a 100%)'
-                  : 'linear-gradient(180deg, #1a4a7a 0%, #133a5e 100%)',
+                  ? 'linear-gradient(180deg, #162040 0%, #005060 100%)'
+                  : 'linear-gradient(180deg, #005060 0%, #003f4a 100%)',
                 border: `1px solid ${isDragOver ? 'rgba(76,110,245,0.6)' : hasRecords ? 'rgba(76,110,245,0.22)' : 'rgba(76,110,245,0.08)'}`,
                 borderRadius: '12px',
                 overflow: 'hidden',

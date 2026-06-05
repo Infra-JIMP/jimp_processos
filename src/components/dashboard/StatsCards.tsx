@@ -38,7 +38,7 @@ function CardTotal({ value }: { value: number }) {
         padding: '20px 22px',
         overflow: 'hidden',
         cursor: 'default',
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(76,110,245,0.22)',
         boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(76,110,245,0.08)',
       }}
@@ -76,7 +76,7 @@ function CardProducao({ value }: { value: number; total: number }) {
         padding: '20px 22px',
         overflow: 'hidden',
         cursor: 'default',
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(255,107,53,0.22)',
         boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,107,53,0.06)',
       }}
@@ -118,7 +118,7 @@ function CardConcluidos({ value }: { value: number; total: number }) {
         padding: '20px 22px',
         overflow: 'hidden',
         cursor: 'default',
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(16,185,129,0.2)',
         boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(16,185,129,0.06)',
       }}
@@ -154,7 +154,7 @@ function CardAguardando({ value }: { value: number; total: number }) {
         padding: '20px 22px',
         overflow: 'hidden',
         cursor: 'default',
-        background: 'linear-gradient(135deg, #1a4a7a 0%, #133a5e 100%)',
+        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
         border: '1px solid rgba(116,143,252,0.18)',
         boxShadow: '0 2px 16px rgba(0,0,0,0.25), inset 0 1px 0 rgba(116,143,252,0.06)',
       }}

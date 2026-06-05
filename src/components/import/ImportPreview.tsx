@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 interface ImportPreviewProps {
   rows: Record<string, string>[];
@@ -30,10 +30,10 @@ export function ImportPreview({
       overflow: 'auto', borderRadius: '12px',
       border: '1px solid rgba(76,110,245,0.14)',
       maxHeight: '320px',
-      background: '#133a5e',
+      background: '#003f4a',
     }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
-        <thead style={{ position: 'sticky', top: 0, background: '#133a5e', zIndex: 1 }}>
+        <thead style={{ position: 'sticky', top: 0, background: '#003f4a', zIndex: 1 }}>
           <tr style={{ borderBottom: '1px solid rgba(76,110,245,0.14)' }}>
             <th style={{ ...thStyle, width: '40px' }}>
               <input
