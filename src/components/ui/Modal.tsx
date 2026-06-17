@@ -43,8 +43,8 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
         onClick={onClose}
         style={{
           position: 'absolute', inset: 0,
-          background: 'rgba(7,11,20,0.85)',
-          backdropFilter: 'blur(8px)',
+          background: 'rgba(15,23,42,0.5)',
+          backdropFilter: 'blur(4px)',
         }}
       />
       <div
@@ -53,19 +53,19 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
           position: 'relative', zIndex: 10,
           width: '100%', maxWidth: maxWidths[size],
           maxHeight: '95vh', overflowY: 'auto',
-          background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-          border: '1px solid rgba(76,110,245,0.22)',
+          background: '#ffffff',
+          border: '1px solid #e2e5eb',
           borderRadius: '16px 16px 0 0',
-          boxShadow: '0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(76,110,245,0.1)',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
         }}
       >
         {title && (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             padding: '16px 20px',
-            borderBottom: '1px solid rgba(76,110,245,0.12)',
+            borderBottom: '1px solid #f3f4f6',
           }}>
-            <h2 style={{ fontSize: '14px', fontWeight: 700, color: '#e8edf7', letterSpacing: '0.02em' }}>
+            <h2 style={{ fontSize: '14px', fontWeight: 600, color: '#1a2332', letterSpacing: '-0.01em', fontFamily: "'DM Sans','Geist',sans-serif" }}>
               {title}
             </h2>
             <button
@@ -73,13 +73,13 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
               style={{
                 width: '28px', height: '28px', borderRadius: '8px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(76,110,245,0.08)',
-                border: '1px solid rgba(76,110,245,0.15)',
-                color: '#8da0c8', cursor: 'pointer',
+                background: '#f3f4f6',
+                border: '1px solid #e5e7eb',
+                color: '#6b7280', cursor: 'pointer',
                 transition: 'all 0.15s ease',
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(76,110,245,0.15)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(76,110,245,0.08)')}
+              onMouseEnter={e => (e.currentTarget.style.background = '#e5e7eb')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#f3f4f6')}
             >
               <X size={14} />
             </button>

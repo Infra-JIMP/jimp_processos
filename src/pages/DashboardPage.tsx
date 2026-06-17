@@ -110,16 +110,16 @@ export function DashboardPage() {
               padding: '7px 13px', borderRadius: '9px',
               fontFamily: "'DM Sans', 'Geist', sans-serif",
               cursor: 'pointer',
-              background: confDropdown ? 'rgba(78,205,196,0.1)' : 'rgba(255,255,255,0.05)',
-              border: `1px solid ${confDropdown ? 'rgba(78,205,196,0.25)' : 'rgba(255,255,255,0.08)'}`,
+              background: confDropdown ? '#eef2ff' : '#ffffff',
+              border: `1px solid ${confDropdown ? '#c7d2fe' : '#e2e5eb'}`,
               transition: 'all 0.15s ease',
             }}
           >
-            <Calendar size={12} color={confDropdown ? '#4ecdc4' : 'rgba(140,175,205,0.5)'} />
+            <Calendar size={12} color={confDropdown ? '#4c6ef5' : '#9ca3af'} />
             <span style={{
               fontSize: '13px', fontWeight: 500,
               fontFamily: "'DM Sans', 'Geist', sans-serif",
-              color: confDropdown ? '#c8e8e0' : 'rgba(180,205,225,0.75)',
+              color: confDropdown ? '#3730a3' : '#374151',
               letterSpacing: '-0.01em',
             }}>
               {activeConf ? activeConf.name : 'Todas as conferências'}
@@ -131,8 +131,8 @@ export function DashboardPage() {
             <div style={{
               position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 100,
               minWidth: '220px',
-              background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-              border: '1px solid rgba(76,110,245,0.2)',
+              background: '#ffffff',
+              border: '1px solid #e2e5eb',
               borderRadius: '12px',
               boxShadow: '0 16px 48px rgba(0,0,0,0.5)',
               overflow: 'hidden',
@@ -140,12 +140,12 @@ export function DashboardPage() {
             }}>
               <button
                 onClick={() => { setActiveConference(null); setConfDropdown(false); }}
-                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 14px', fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', background: !activeConferenceId ? 'rgba(78,205,196,0.08)' : 'transparent', border: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)', transition: 'background 0.1s' }}
-                onMouseEnter={e => { if (activeConferenceId) e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
+                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 14px', fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', background: !activeConferenceId ? '#eef2ff' : 'transparent', border: 'none', borderBottom: '1px solid #f3f4f6', transition: 'background 0.1s' }}
+                onMouseEnter={e => { if (activeConferenceId) e.currentTarget.style.background = '#f9fafb'; }}
                 onMouseLeave={e => { if (activeConferenceId) e.currentTarget.style.background = 'transparent'; }}
               >
-                <span style={{ fontSize: '12.5px', color: !activeConferenceId ? '#4ecdc4' : 'rgba(180,205,225,0.5)', fontWeight: !activeConferenceId ? 600 : 400 }}>Todas as conferências</span>
-                <span style={{ marginLeft: 'auto', fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: 'rgba(140,175,205,0.35)' }}>{records.length}</span>
+                <span style={{ fontSize: '12.5px', color: !activeConferenceId ? '#4c6ef5' : '#6b7280', fontWeight: !activeConferenceId ? 600 : 400 }}>Todas as conferências</span>
+                <span style={{ marginLeft: 'auto', fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: '#d1d5db' }}>{records.length}</span>
               </button>
               {conferences.map(conf => {
                 const count = records.filter(r => r.conferenceId === conf.id).length;
@@ -156,13 +156,13 @@ export function DashboardPage() {
                     onMouseLeave={e => { const row = e.currentTarget.querySelector('.conf-delete-btn') as HTMLElement; if (row) row.style.opacity = '0'; }}
                   >
                     <button onClick={() => { setActiveConference(conf.id); setConfDropdown(false); }}
-                      style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 14px', fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', background: isActive ? 'rgba(78,205,196,0.08)' : 'transparent', border: 'none', transition: 'background 0.1s', paddingRight: '36px' }}
-                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
+                      style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', padding: '9px 14px', fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', background: isActive ? '#eef2ff' : 'transparent', border: 'none', transition: 'background 0.1s', paddingRight: '36px' }}
+                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = '#f9fafb'; }}
                       onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
                     >
-                      <Calendar size={12} color={isActive ? '#4ecdc4' : 'rgba(140,175,205,0.3)'} />
-                      <span style={{ fontSize: '12.5px', color: isActive ? '#c8e8e0' : 'rgba(180,205,225,0.55)', fontWeight: isActive ? 500 : 400, flex: 1, textAlign: 'left', letterSpacing: '-0.01em' }}>{conf.name}</span>
-                      <span style={{ fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: 'rgba(140,175,205,0.3)' }}>{count}</span>
+                      <Calendar size={12} color={isActive ? '#4c6ef5' : '#d1d5db'} />
+                      <span style={{ fontSize: '12.5px', color: isActive ? '#3730a3' : '#374151', fontWeight: isActive ? 500 : 400, flex: 1, textAlign: 'left', letterSpacing: '-0.01em' }}>{conf.name}</span>
+                      <span style={{ fontSize: '10px', fontFamily: "'Geist Mono', monospace", color: '#d1d5db' }}>{count}</span>
                     </button>
                     <button
                       className="conf-delete-btn"
@@ -227,37 +227,19 @@ export function DashboardPage() {
           <div style={{ flex: 1 }} />
 
           {/* Clear filters */}
-          <button
-            onClick={clearAllFilters}
-            style={{
-              display: 'flex', alignItems: 'center', gap: '5px',
-              padding: '5px 11px', fontSize: '11px', fontWeight: 600,
-              fontFamily: 'inherit', cursor: 'pointer', borderRadius: '8px',
-              background: 'rgba(116,143,252,0.08)', border: '1px solid rgba(116,143,252,0.2)',
-              color: 'rgba(116,143,252,0.7)', transition: 'all 0.15s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(116,143,252,0.15)'; e.currentTarget.style.color = '#748ffc'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(116,143,252,0.08)'; e.currentTarget.style.color = 'rgba(116,143,252,0.7)'; }}
+          <button onClick={clearAllFilters} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '5px 11px', fontSize: '11px', fontWeight: 500, fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', borderRadius: '8px', background: '#f3f4f6', border: '1px solid #e2e5eb', color: '#6b7280', transition: 'all 0.15s' }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#e5e7eb'; e.currentTarget.style.color = '#374151'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#f3f4f6'; e.currentTarget.style.color = '#6b7280'; }}
           >
-            <X size={11} />
-            Limpar filtros
+            <X size={11} /> Limpar filtros
           </button>
 
           {/* Clear all records */}
-          <button
-            onClick={() => setConfirmClear(true)}
-            style={{
-              display: 'flex', alignItems: 'center', gap: '5px',
-              padding: '5px 11px', fontSize: '11px', fontWeight: 600,
-              fontFamily: 'inherit', cursor: 'pointer', borderRadius: '8px',
-              background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.18)',
-              color: 'rgba(239,68,68,0.6)', transition: 'all 0.15s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.12)'; e.currentTarget.style.borderColor = 'rgba(239,68,68,0.35)'; e.currentTarget.style.color = '#ef4444'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.06)'; e.currentTarget.style.borderColor = 'rgba(239,68,68,0.18)'; e.currentTarget.style.color = 'rgba(239,68,68,0.6)'; }}
+          <button onClick={() => setConfirmClear(true)} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '5px 11px', fontSize: '11px', fontWeight: 500, fontFamily: "'DM Sans','Geist',sans-serif", cursor: 'pointer', borderRadius: '8px', background: '#fff1f2', border: '1px solid #fecdd3', color: '#e11d48', transition: 'all 0.15s' }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#ffe4e6'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#fff1f2'; }}
           >
-            <Trash2 size={11} />
-            Limpar tudo
+            <Trash2 size={11} /> Limpar tudo
           </button>
         </div>
       )}

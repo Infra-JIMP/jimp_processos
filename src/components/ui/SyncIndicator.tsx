@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { onSyncStatus, type SyncStatus } from '../../lib/sync';
 
-const CONFIG: Record<SyncStatus, { label: string; color: string; pulse: boolean }> = {
-  idle:    { label: 'Ao vivo',       color: '#4ecdc4', pulse: true  },
-  syncing: { label: 'Sincronizando', color: '#74b0fc', pulse: true  },
-  synced:  { label: 'Ao vivo',       color: '#4ecdc4', pulse: true  },
-  error:   { label: 'Erro DB',       color: '#f87171', pulse: false },
-  offline: { label: 'Offline',       color: '#f59e0b', pulse: false },
+const CONFIG: Record<SyncStatus, { label: string; color: string; bg: string; pulse: boolean }> = {
+  idle:    { label: 'Ao vivo',       color: '#059669', bg: 'rgba(5,150,105,0.08)',   pulse: true  },
+  syncing: { label: 'Sincronizando', color: '#4c6ef5', bg: 'rgba(76,110,245,0.08)',  pulse: true  },
+  synced:  { label: 'Ao vivo',       color: '#059669', bg: 'rgba(5,150,105,0.08)',   pulse: true  },
+  error:   { label: 'Erro DB',       color: '#dc2626', bg: 'rgba(220,38,38,0.07)',   pulse: false },
+  offline: { label: 'Offline',       color: '#d97706', bg: 'rgba(217,119,6,0.07)',   pulse: false },
 };
 
 export function SyncIndicator() {
@@ -28,27 +28,23 @@ export function SyncIndicator() {
         style={{
           display: 'flex', alignItems: 'center', gap: '6px',
           padding: '4px 10px', borderRadius: '20px',
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.07)',
+          background: cfg.bg,
+          border: `1px solid ${cfg.color}22`,
           flexShrink: 0,
           cursor: status === 'error' ? 'pointer' : 'default',
-          transition: 'border-color 0.2s',
         }}
       >
         <div style={{
           width: '5px', height: '5px', borderRadius: '50%',
           background: cfg.color,
-          boxShadow: `0 0 6px ${cfg.color}`,
           animation: cfg.pulse ? 'syncPulse 2.5s ease-in-out infinite' : 'none',
           flexShrink: 0,
         }} />
         <span style={{
-          fontSize: '10px',
-          fontWeight: 600,
+          fontSize: '11px', fontWeight: 500,
           fontFamily: "'DM Sans', 'Geist', sans-serif",
           color: cfg.color,
-          opacity: 0.8,
-          letterSpacing: '0.03em',
+          letterSpacing: '-0.01em',
         }}>
           {status === 'syncing' ? 'Sincronizando…' : cfg.label}
         </span>
@@ -57,12 +53,10 @@ export function SyncIndicator() {
       {showError && error && (
         <div style={{
           position: 'absolute', top: '100%', right: 0, marginTop: '6px',
-          background: '#003540', border: '1px solid rgba(248,113,113,0.2)',
+          background: '#fff', border: '1px solid #fecaca',
           borderRadius: '8px', padding: '8px 12px', minWidth: '200px',
-          fontSize: '12px',
-          fontFamily: "'DM Sans', 'Geist', sans-serif",
-          color: '#f87171', zIndex: 50,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+          fontSize: '12px', color: '#dc2626', zIndex: 50,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
         }}>
           {error}
         </div>

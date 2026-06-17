@@ -23,9 +23,9 @@ const variantStyles: Record<Variant, React.CSSProperties> = {
     boxShadow: '0 2px 12px rgba(255,107,53,0.3)',
   },
   ghost: {
-    background: 'rgba(255,255,255,0.05)',
-    border: '1px solid rgba(255,255,255,0.1)',
-    color: 'rgba(180,205,225,0.7)',
+    background: '#f3f4f6',
+    border: '1px solid #e2e5eb',
+    color: '#374151',
   },
   danger: {
     background: 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)',

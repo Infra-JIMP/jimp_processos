@@ -32,16 +32,15 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
     crumbs.push({ label: 'PAT / OFIC' });
   }
 
-  const lastCrumb = crumbs[crumbs.length - 1];
-
   return (
     <header
       className="flex items-center gap-3 sticky top-0 z-10"
       style={{
         height: '50px',
         padding: '0 clamp(12px, 3vw, 20px)',
-        background: '#005060',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        background: '#ffffff',
+        borderBottom: '1px solid #e8eaef',
+        boxShadow: '0 1px 0 #e8eaef',
         minWidth: 0,
       }}
     >
@@ -52,9 +51,9 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
         className="lg:hidden flex items-center justify-center"
         style={{
           width: '28px', height: '28px', borderRadius: '7px',
-          border: '1px solid rgba(255,255,255,0.1)',
-          color: 'rgba(180,210,230,0.6)',
-          background: 'rgba(255,255,255,0.04)',
+          border: '1px solid #e2e5eb',
+          color: '#6b7280',
+          background: '#f5f6f8',
           flexShrink: 0, cursor: 'pointer',
         }}
       >
@@ -68,23 +67,21 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
           return (
             <React.Fragment key={i}>
               {i > 0 && (
-                <ChevronRight size={10} color="rgba(140,170,195,0.2)" style={{ flexShrink: 0 }} />
+                <ChevronRight size={10} color="#d1d5db" style={{ flexShrink: 0 }} />
               )}
               {crumb.to ? (
                 <Link
                   to={crumb.to}
                   style={{
-                    fontSize: '12px',
-                    fontWeight: 400,
+                    fontSize: '12px', fontWeight: 400,
                     fontFamily: "'DM Sans', 'Geist', sans-serif",
-                    color: 'rgba(140,170,195,0.4)',
+                    color: '#9ca3af',
                     textDecoration: 'none',
                     whiteSpace: 'nowrap',
                     transition: 'color 0.12s',
-                    letterSpacing: '0',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(180,210,230,0.65)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(140,170,195,0.4)')}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#4b5563')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#9ca3af')}
                 >
                   {crumb.label}
                 </Link>
@@ -95,8 +92,8 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
                     fontSize: isLast ? '18px' : '12px',
                     fontWeight: isLast ? 700 : 400,
                     fontFamily: isLast ? "'Bebas Neue', sans-serif" : "'DM Sans', 'Geist', sans-serif",
-                    color: isLast ? '#dde6f0' : 'rgba(140,170,195,0.4)',
-                    letterSpacing: isLast ? '0.1em' : '0',
+                    color: isLast ? '#1a2332' : '#9ca3af',
+                    letterSpacing: isLast ? '0.08em' : '0',
                     whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                     lineHeight: 1,
                   }}
@@ -107,20 +104,6 @@ export function Topbar({ onMenuClick, actions }: TopbarProps) {
             </React.Fragment>
           );
         })}
-
-        {/* Page subtitle hint for dashboard */}
-        {lastCrumb?.label === 'Dashboard' && (
-          <span style={{
-            marginLeft: '6px',
-            fontSize: '11px',
-            fontFamily: "'DM Sans', 'Geist', sans-serif",
-            color: 'rgba(78,205,196,0.4)',
-            fontWeight: 500,
-            letterSpacing: '0',
-          }}>
-            — Processos
-          </span>
-        )}
       </nav>
 
       <SyncIndicator />

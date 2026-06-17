@@ -79,8 +79,8 @@ function PhotoTooltip({ stage, stageLabel, anchorRect }: PhotoTooltipProps) {
     <div
       style={{
         position: 'absolute', top, left, width: W, zIndex: 3000,
-        background: 'linear-gradient(145deg, #005060 0%, #003f4a 100%)',
-        border: '1px solid rgba(76,110,245,0.22)',
+        background: '#1e293b',
+        border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: '12px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(76,110,245,0.06)',
         overflow: 'hidden',
@@ -642,19 +642,19 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
         <table>
           <thead style={{ position: 'sticky', top: 0, zIndex: 20 }}>
             <tr style={{
-              borderBottom: '2px solid rgba(0,188,212,0.2)',
-              background: 'linear-gradient(180deg, #003f4a 0%, #003540 100%)',
+              borderBottom: '1px solid #e8eaef',
+              background: '#f8f9fb',
             }}>
               <th style={{
-                textAlign: 'left', padding: '12px 16px',
-                fontWeight: 700, fontSize: '10px', letterSpacing: '0.18em',
+                textAlign: 'left', padding: '11px 16px',
+                fontWeight: 700, fontSize: '10px', letterSpacing: '0.16em',
                 fontFamily: "'Geist Mono', monospace",
-                color: 'rgba(100,165,200,0.6)',
+                color: '#9ca3af',
                 textTransform: 'uppercase',
                 position: 'sticky', left: 0, zIndex: 30,
-                background: '#003f4a',
+                background: '#f8f9fb',
                 minWidth: '200px',
-                borderRight: '1px solid rgba(255,255,255,0.06)',
+                borderRight: '1px solid #e8eaef',
               }}>
                 NS / Cliente
               </th>
@@ -668,13 +668,11 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                       padding: '10px 6px',
                       fontWeight: 600, fontSize: '10px', letterSpacing: '0.04em',
                       fontFamily: "'DM Sans', 'Geist', sans-serif",
-                      color: isActive ? '#4ecdc4' : 'rgba(140,175,205,0.55)',
+                      color: isActive ? '#4c6ef5' : '#6b7280',
                       textAlign: 'center', minWidth: '76px',
                       whiteSpace: 'nowrap',
-                      background: isActive
-                        ? 'rgba(78,205,196,0.06)'
-                        : 'linear-gradient(180deg, #003f4a 0%, #003540 100%)',
-                      borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.04)',
+                      background: isActive ? '#eef2ff' : '#f8f9fb',
+                      borderLeft: i === 0 ? 'none' : '1px solid #f0f1f4',
                       cursor: 'pointer',
                       userSelect: 'none',
                       transition: 'color 0.15s, background 0.15s',
@@ -685,10 +683,10 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                       <span>{s.label}</span>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', opacity: isActive ? 1 : 0.2, transition: 'opacity 0.15s' }}>
                         <svg width="7" height="4" viewBox="0 0 7 4" fill="none">
-                          <path d="M3.5 0L7 4H0L3.5 0Z" fill={isActive && sortDir === 'asc' ? '#4ecdc4' : 'rgba(140,175,205,0.6)'} />
+                          <path d="M3.5 0L7 4H0L3.5 0Z" fill={isActive && sortDir === 'asc' ? '#4c6ef5' : '#d1d5db'} />
                         </svg>
                         <svg width="7" height="4" viewBox="0 0 7 4" fill="none">
-                          <path d="M3.5 4L0 0H7L3.5 4Z" fill={isActive && sortDir === 'desc' ? '#4ecdc4' : 'rgba(140,175,205,0.6)'} />
+                          <path d="M3.5 4L0 0H7L3.5 4Z" fill={isActive && sortDir === 'desc' ? '#4c6ef5' : '#d1d5db'} />
                         </svg>
                       </div>
                     </div>
@@ -696,7 +694,7 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                       <div style={{
                         position: 'absolute', bottom: 0, left: '15%', right: '15%',
                         height: '2px', borderRadius: '2px 2px 0 0',
-                        background: 'linear-gradient(90deg, #4ecdc4, #74b0fc)',
+                        background: '#4c6ef5',
                       }} />
                     )}
                   </th>
@@ -713,8 +711,8 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                   key={record.id}
                   className="table-row"
                   style={{
-                    borderBottom: '1px solid rgba(0,188,212,0.07)',
-                    background: isEven ? 'rgba(0,188,212,0.03)' : 'transparent',
+                    borderBottom: '1px solid #f0f1f4',
+                    background: isEven ? '#fafbfc' : '#ffffff',
                   }}
                 >
                   {/* NS / Cliente sticky column */}
@@ -723,23 +721,23 @@ export function TableView({ records, visibleStages, sortCol, sortDir, onSortChan
                     style={{
                       padding: '10px 16px',
                       position: 'sticky', left: 0, zIndex: 5,
-                      background: isEven ? '#003f4a' : '#003540',
-                      borderRight: '2px solid rgba(0,188,212,0.12)',
+                      background: isEven ? '#fafbfc' : '#ffffff',
+                      borderRight: '1px solid #e8eaef',
                       cursor: 'default',
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <div style={{ minWidth: 0 }}>
                         <p style={{
-                          fontWeight: 600, color: '#ddeeff',
+                          fontWeight: 600, color: '#1a2332',
                           fontFamily: "'Geist Mono', monospace",
                           fontSize: '12.5px', lineHeight: 1.2,
-                          letterSpacing: '0.02em',
+                          letterSpacing: '0.01em',
                         }}>
                           {record.ns}
                         </p>
                         <p style={{
-                          color: 'rgba(140,170,195,0.5)',
+                          color: '#9ca3af',
                           fontFamily: "'DM Sans', 'Geist', sans-serif",
                           fontSize: '11px', fontWeight: 400,
                           marginTop: '2px', whiteSpace: 'nowrap',

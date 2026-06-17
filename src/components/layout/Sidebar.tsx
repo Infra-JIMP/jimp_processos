@@ -33,13 +33,12 @@ function SidebarNavItem({ to, icon: Icon, label, desc, onClose, isBottom = false
             display: 'flex', alignItems: 'center', gap: '10px',
             padding: '8px 10px', borderRadius: '9px',
             cursor: 'pointer', position: 'relative',
-            transition: 'background 0.12s ease, border-color 0.12s ease',
-            background: isActive ? 'rgba(255,107,53,0.1)' : 'transparent',
-            border: isActive ? '1px solid rgba(255,107,53,0.18)' : '1px solid transparent',
+            transition: 'background 0.12s ease',
+            background: isActive ? 'rgba(255,255,255,0.1)' : 'transparent',
             marginBottom: isBottom ? '0' : '1px',
           }}
           onMouseEnter={e => {
-            if (!isActive) (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.04)';
+            if (!isActive) (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.06)';
           }}
           onMouseLeave={e => {
             if (!isActive) (e.currentTarget as HTMLDivElement).style.background = 'transparent';
@@ -48,9 +47,9 @@ function SidebarNavItem({ to, icon: Icon, label, desc, onClose, isBottom = false
           {/* Active bar */}
           {isActive && (
             <div style={{
-              position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '2px',
+              position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '2.5px',
               borderRadius: '0 2px 2px 0',
-              background: 'linear-gradient(180deg, #ff6b35, #ffa552)',
+              background: '#ff6b35',
             }} />
           )}
 
@@ -58,32 +57,28 @@ function SidebarNavItem({ to, icon: Icon, label, desc, onClose, isBottom = false
           <div style={{
             width: '28px', height: '28px', borderRadius: '7px', flexShrink: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: isActive ? 'rgba(255,107,53,0.12)' : 'rgba(255,255,255,0.05)',
-            border: `1px solid ${isActive ? 'rgba(255,107,53,0.2)' : 'rgba(255,255,255,0.06)'}`,
+            background: isActive ? 'rgba(255,107,53,0.18)' : 'rgba(255,255,255,0.07)',
             transition: 'all 0.12s ease',
           }}>
-            <Icon size={13} color={isActive ? '#ff8c42' : 'rgba(180,210,230,0.55)'} />
+            <Icon size={13} color={isActive ? '#ff8c42' : 'rgba(255,255,255,0.45)'} />
           </div>
 
           {/* Text */}
           <div style={{ minWidth: 0 }}>
             <p style={{
               fontSize: '13px',
-              fontWeight: isActive ? 600 : 500,
+              fontWeight: isActive ? 600 : 400,
               fontFamily: "'DM Sans', 'Geist', sans-serif",
-              color: isActive ? '#ffc4a0' : 'rgba(220,235,245,0.8)',
+              color: isActive ? '#ffffff' : 'rgba(255,255,255,0.6)',
               lineHeight: 1.25,
-              letterSpacing: '-0.01em',
             }}>
               {label}
             </p>
             <p style={{
               fontSize: '10.5px',
               fontFamily: "'DM Sans', 'Geist', sans-serif",
-              color: isActive ? 'rgba(255,160,100,0.5)' : 'rgba(140,170,195,0.35)',
-              marginTop: '1px',
-              letterSpacing: '0',
-              fontWeight: 400,
+              color: isActive ? 'rgba(255,200,170,0.45)' : 'rgba(255,255,255,0.25)',
+              marginTop: '1px', fontWeight: 400,
             }}>
               {desc}
             </p>
@@ -100,7 +95,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       {isOpen && (
         <div
           className="fixed inset-0 z-20 lg:hidden"
-          style={{ background: 'rgba(0,20,30,0.75)' }}
+          style={{ background: 'rgba(0,0,0,0.4)' }}
           onClick={onClose}
         />
       )}
@@ -108,21 +103,21 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <aside
         className={`fixed top-0 left-0 h-full z-30 flex flex-col lg:static lg:z-auto lg:translate-x-0 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
         style={{
-          width: '212px', flexShrink: 0,
-          background: '#005060',
-          borderRight: '1px solid rgba(255,255,255,0.06)',
+          width: '210px', flexShrink: 0,
+          background: '#1a2540',
+          borderRight: '1px solid rgba(0,0,0,0.15)',
         }}
       >
         {/* Logo */}
         <div style={{
           padding: '16px 14px 14px',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(255,255,255,0.07)',
           display: 'flex', alignItems: 'center', gap: '10px',
         }}>
           <div style={{
             width: '32px', height: '32px', borderRadius: '8px',
-            background: 'rgba(255,107,53,0.1)',
-            border: '1px solid rgba(255,107,53,0.18)',
+            background: 'rgba(255,107,53,0.12)',
+            border: '1px solid rgba(255,107,53,0.2)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }}>
@@ -130,7 +125,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
           <div>
             <p className="font-display" style={{
-              fontSize: '17px', color: '#e8f4ff',
+              fontSize: '17px', color: '#ffffff',
               lineHeight: 1, letterSpacing: '0.05em',
             }}>
               GERENCIAL
@@ -138,7 +133,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             <p style={{
               fontSize: '9px',
               fontFamily: "'Geist Mono', monospace",
-              color: 'rgba(78,205,196,0.6)',
+              color: 'rgba(100,180,255,0.5)',
               letterSpacing: '0.2em', marginTop: '2px', fontWeight: 600,
             }}>
               IMPLEMENTOS
@@ -151,7 +146,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <span style={{
             fontSize: '9px', letterSpacing: '0.2em',
             fontFamily: "'Geist Mono', monospace",
-            color: 'rgba(140,170,195,0.3)', fontWeight: 600,
+            color: 'rgba(255,255,255,0.2)', fontWeight: 600,
             textTransform: 'uppercase',
           }}>
             MENU
@@ -168,13 +163,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Bottom nav */}
         <div style={{
           padding: '8px 7px 10px',
-          borderTop: '1px solid rgba(255,255,255,0.05)',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
         }}>
           {bottomItems.map(item => (
             <SidebarNavItem key={item.to} {...item} onClose={onClose} isBottom />
           ))}
         </div>
-
       </aside>
     </>
   );

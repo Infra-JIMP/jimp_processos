@@ -37,7 +37,7 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
         onClick={onClose}
         style={{
           position: 'fixed', inset: 0, zIndex: 1000,
-          background: 'rgba(7,11,20,0.8)', backdropFilter: 'blur(6px)',
+          background: 'rgba(15,23,42,0.4)', backdropFilter: 'blur(4px)',
           animation: 'fadeIn 0.2s ease both',
         }}
       />
@@ -47,9 +47,9 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
         className="ns-detail-modal"
         style={{
           position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 1001,
-          background: '#006a7a',
-          borderLeft: '1px solid rgba(76,110,245,0.18)',
-          boxShadow: '-24px 0 80px rgba(0,0,0,0.6)',
+          background: '#f8f9fb',
+          borderLeft: '1px solid #e2e5eb',
+          boxShadow: '-8px 0 40px rgba(0,0,0,0.1)',
           display: 'flex', flexDirection: 'column',
           animation: 'slideInRight 0.28s cubic-bezier(0.16,1,0.3,1) both',
           overflowY: 'auto',
@@ -59,16 +59,16 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
         <div style={{
           display: 'flex', alignItems: 'center', gap: '10px',
           padding: '14px 20px',
-          borderBottom: '1px solid rgba(76,110,245,0.1)',
-          background: '#006a7a',
+          borderBottom: '1px solid #e8eaef',
+          background: '#ffffff',
           position: 'sticky', top: 0, zIndex: 10,
           flexShrink: 0,
         }}>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ fontSize: '11px', fontWeight: 700, color: '#748ffc', letterSpacing: '0.12em' }}>
+            <p style={{ fontSize: '11px', fontWeight: 700, color: '#4c6ef5', letterSpacing: '0.1em', fontFamily: "'Geist Mono', monospace" }}>
               {record.ns}
             </p>
-            <p style={{ fontSize: '10px', color: 'rgba(141,160,200,0.4)', marginTop: '1px' }}>
+            <p style={{ fontSize: '11px', color: '#9ca3af', marginTop: '1px', fontFamily: "'DM Sans','Geist',sans-serif" }}>
               {record.clientName}
             </p>
           </div>
@@ -80,11 +80,11 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
               display: 'flex', alignItems: 'center', gap: '5px',
               padding: '6px 10px', borderRadius: '8px', fontSize: '11px', fontWeight: 600,
               fontFamily: 'inherit', cursor: 'pointer',
-              background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.18)',
-              color: 'rgba(239,68,68,0.6)', transition: 'all 0.15s ease',
+              background: '#fff1f2', border: '1px solid #fecdd3',
+              color: '#e11d48', transition: 'all 0.15s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.14)'; e.currentTarget.style.color = '#ef4444'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.07)'; e.currentTarget.style.color = 'rgba(239,68,68,0.6)'; }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#ffe4e6'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#fff1f2'; }}
           >
             <Trash2 size={12} />
           </button>
@@ -93,11 +93,11 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               width: '30px', height: '30px', borderRadius: '8px',
-              background: 'rgba(76,110,245,0.07)', border: '1px solid rgba(76,110,245,0.15)',
-              color: 'rgba(141,160,200,0.5)', cursor: 'pointer', transition: 'all 0.15s ease',
+              background: '#f3f4f6', border: '1px solid #e5e7eb',
+              color: '#6b7280', cursor: 'pointer', transition: 'all 0.15s ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(76,110,245,0.14)'; e.currentTarget.style.color = '#c5d0e8'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(76,110,245,0.07)'; e.currentTarget.style.color = 'rgba(141,160,200,0.5)'; }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#e5e7eb'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#f3f4f6'; }}
           >
             <X size={14} />
           </button>
@@ -113,9 +113,9 @@ export function NSDetailModal({ recordId, onClose }: NSDetailModalProps) {
 
       {/* Delete confirm */}
       <Modal isOpen={deleteModal} onClose={() => setDeleteModal(false)} title="Confirmar Exclusão">
-        <p style={{ fontSize: '13px', color: 'rgba(141,160,200,0.6)', lineHeight: 1.6, marginBottom: '20px' }}>
+        <p style={{ fontSize: '13px', color: '#6b7280', lineHeight: 1.6, marginBottom: '20px', fontFamily: "'DM Sans','Geist',sans-serif" }}>
           Tem certeza que deseja excluir o NS{' '}
-          <strong style={{ color: '#e8edf7', fontFamily: "'Geist Mono', monospace" }}>{record.ns}</strong>?
+          <strong style={{ color: '#1a2332', fontFamily: "'Geist Mono', monospace" }}>{record.ns}</strong>?
           Esta ação não pode ser desfeita.
         </p>
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
