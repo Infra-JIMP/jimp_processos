@@ -1,5 +1,5 @@
-﻿import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, CheckCheck, Clock, PlayCircle, MapPin, History } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { ChevronDown, ChevronUp, CheckCheck, Clock, PlayCircle, MapPin, History, Camera, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '../ui/Badge';
 import { useAppStore } from '../../store/useAppStore';
 import type { StageEntry } from '../../store/types';
@@ -12,7 +12,6 @@ interface StageItemProps {
   index: number;
 }
 
-// Etapas que possuem campo de localização + observação
 const STAGES_WITH_LOCATION = new Set<StageId>([
   'PAT', 'MONT_ASOALHO', 'PINTURA', 'REBIT',
   'PROD_PORTAS', 'CARPINTARIA', 'ELETRICA', 'REVISAO_FINAL',
@@ -42,31 +41,39 @@ function formatDate(iso?: string): string {
 }
 
 const accentByStatus = {
-  pending:     { color: '#304280', border: 'rgba(76,110,245,0.15)',  bg: 'rgba(76,110,245,0.04)' },
-  in_progress: { color: '#ff6b35', border: 'rgba(255,107,53,0.25)', bg: 'rgba(255,107,53,0.05)' },
-  done:        { color: '#10b981', border: 'rgba(16,185,129,0.22)', bg: 'rgba(16,185,129,0.04)' },
-  n_a:         { color: '#4da6cc', border: 'rgba(77,166,204,0.2)',  bg: 'rgba(77,166,204,0.04)' },
+  pending:     { color: '#4c6ef5', border: '#e0e7ff', bg: '#eef2ff' },
+  in_progress: { color: '#ff6b35', border: '#fed7aa', bg: '#fff7ed' },
+  done:        { color: '#10b981', border: '#a7f3d0', bg: '#ecfdf5' },
+  n_a:         { color: '#4da6cc', border: '#bae6fd', bg: '#f0f9ff' },
 };
 
 const StatusIcon = ({ status }: { status: StageEntry['status'] }) => {
   if (status === 'done') return <CheckCheck size={14} color="#10b981" />;
   if (status === 'in_progress') return <PlayCircle size={14} color="#ff6b35" />;
-  if (status === 'n_a') return <span style={{ fontSize: '9px', fontWeight: 700, color: 'rgba(77,166,204,0.6)', fontFamily: "'Geist Mono', monospace" }}>N/A</span>;
-  return <Clock size={14} color="#304280" />;
+  if (status === 'n_a') return <span style={{ fontSize: '9px', fontWeight: 700, color: '#4da6cc', fontFamily: "'Geist Mono', monospace" }}>N/A</span>;
+  return <Clock size={14} color="#4c6ef5" />;
 };
 
 export function StageItem({ entry, recordId, index }: StageItemProps) {
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [photoIdx, setPhotoIdx] = useState(0);
+  const cameraRef = useRef<HTMLInputElement>(null);
+  const galleryRef = useRef<HTMLInputElement>(null);
+
   const updateStageStatus   = useAppStore((s) => s.updateStageStatus);
   const updateStageNotes    = useAppStore((s) => s.updateStageNotes);
   const updateStageLocation = useAppStore((s) => s.updateStageLocation);
+  const addStagePhoto       = useAppStore((s) => s.addStagePhoto);
+  const removeStagePhoto    = useAppStore((s) => s.removeStagePhoto);
 
-  const stageInfo    = STAGES.find((s) => s.id === entry.stageId);
-  const hasLocField  = STAGES_WITH_LOCATION.has(entry.stageId as StageId);
+  const stageInfo   = STAGES.find((s) => s.id === entry.stageId);
+  const hasLocField = STAGES_WITH_LOCATION.has(entry.stageId as StageId);
   const { color, border, bg } = accentByStatus[entry.status];
-
   const isNA = entry.status === 'n_a';
+
+  const allPhotos = [...(entry.locationPhotos ?? []), ...(entry.notesPhotos ?? [])];
+  const photoCount = allPhotos.length;
 
   const handleStatusClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -74,16 +81,35 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
     updateStageStatus(recordId, entry.stageId, statusCycleMap[entry.status]);
   };
 
+  const handlePhotoFiles = (files: FileList | null) => {
+    if (!files) return;
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        if (ev.target?.result) addStagePhoto(recordId, entry.stageId, 'notesPhotos', ev.target.result as string);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleRemovePhoto = () => {
+    const locCount = (entry.locationPhotos ?? []).length;
+    const field = photoIdx < locCount ? 'locationPhotos' : 'notesPhotos';
+    const idx = photoIdx < locCount ? photoIdx : photoIdx - locCount;
+    removeStagePhoto(recordId, entry.stageId, field, idx);
+    setPhotoIdx(p => Math.max(0, p - 1));
+  };
+
   return (
     <div
       style={{
-        background: hovered ? 'rgba(17,29,53,0.9)' : 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-        border: `1px solid ${hovered ? border : 'rgba(76,110,245,0.12)'}`,
+        background: '#ffffff',
+        border: `1px solid ${hovered ? border : '#e8eaef'}`,
         borderLeft: `3px solid ${color}`,
         borderRadius: '12px',
         overflow: 'hidden',
         transition: 'all 0.15s ease',
-        boxShadow: hovered ? `0 4px 20px rgba(0,0,0,0.3), 0 0 12px ${bg}` : 'none',
+        boxShadow: hovered ? `0 4px 16px rgba(0,0,0,0.07)` : '0 1px 4px rgba(0,0,0,0.04)',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -96,43 +122,53 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
         <div style={{
           width: '26px', height: '26px', borderRadius: '8px', flexShrink: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: entry.status === 'done' ? 'rgba(16,185,129,0.15)' : 'rgba(76,110,245,0.08)',
-          border: `1px solid ${border}`,
+          background: bg, border: `1px solid ${border}`,
         }}>
           <StatusIcon status={entry.status} />
         </div>
 
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <p style={{ fontWeight: 700, fontSize: '13px', color: '#e8edf7', lineHeight: 1.3 }}>
-              <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: '10px', color: 'rgba(141,160,200,0.4)', marginRight: '6px' }}>
+            <p style={{ fontWeight: 700, fontSize: '13px', color: '#1a2332', lineHeight: 1.3 }}>
+              <span style={{ fontFamily: "'Geist Mono', monospace", fontSize: '10px', color: '#d1d5db', marginRight: '6px' }}>
                 {String(index + 1).padStart(2, '0')}
               </span>
               {stageInfo?.label ?? entry.stageId}
             </p>
-            {/* Localização inline badge */}
             {hasLocField && entry.location && (
               <span style={{
                 display: 'inline-flex', alignItems: 'center', gap: '3px',
                 fontSize: '10px', fontFamily: "'Geist Mono', monospace",
-                color: '#ff8c42', background: 'rgba(255,107,53,0.1)',
-                border: '1px solid rgba(255,107,53,0.25)',
+                color: '#ff6b35', background: '#fff7ed',
+                border: '1px solid #fed7aa',
                 borderRadius: '6px', padding: '1px 7px',
               }}>
                 <MapPin size={9} />
                 {entry.location}
               </span>
             )}
+            {hasLocField && photoCount > 0 && (
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: '3px',
+                fontSize: '10px', fontFamily: "'Geist Mono', monospace",
+                color: '#10b981', background: '#ecfdf5',
+                border: '1px solid #a7f3d0',
+                borderRadius: '6px', padding: '1px 7px',
+              }}>
+                <Camera size={9} />
+                {photoCount}
+              </span>
+            )}
           </div>
           {entry.status !== 'pending' && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '3px' }}>
               {entry.startedAt && (
-                <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.45)', fontFamily: "'Geist Mono', monospace" }}>
+                <span style={{ fontSize: '10px', color: '#9ca3af', fontFamily: "'Geist Mono', monospace" }}>
                   ▶ {formatDate(entry.startedAt)}
                 </span>
               )}
               {entry.completedAt && (
-                <span style={{ fontSize: '10px', color: 'rgba(52,211,153,0.6)', fontFamily: "'Geist Mono', monospace" }}>
+                <span style={{ fontSize: '10px', color: '#059669', fontFamily: "'Geist Mono', monospace" }}>
                   ✓ {formatDate(entry.completedAt)}
                 </span>
               )}
@@ -145,10 +181,10 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
             style={{ background: 'none', border: 'none', padding: 0, cursor: isNA ? 'default' : 'pointer' }}>
             <Badge status={entry.status} />
           </button>
-          <div style={{ color: 'rgba(141,160,200,0.3)' }}>
+          <div style={{ color: '#d1d5db' }}>
             {expanded
-              ? <ChevronUp size={14} color="rgba(116,143,252,0.5)" />
-              : <ChevronDown size={14} color="rgba(141,160,200,0.3)" />
+              ? <ChevronUp size={14} color="#9ca3af" />
+              : <ChevronDown size={14} color="#d1d5db" />
             }
           </div>
         </div>
@@ -157,38 +193,38 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
       {/* ── Expanded panel ── */}
       {expanded && (
         <div style={{
-          borderTop: `1px solid ${bg}`,
-          background: 'rgba(5,9,18,0.5)',
+          borderTop: `1px solid #f3f4f6`,
+          background: '#fafbfc',
         }}>
           {/* Panel header strip */}
           <div style={{
             padding: '8px 14px',
-            background: `linear-gradient(90deg, ${bg} 0%, transparent 100%)`,
-            borderBottom: '1px solid rgba(76,110,245,0.06)',
+            background: bg,
+            borderBottom: `1px solid ${border}`,
             display: 'flex', alignItems: 'center', gap: '6px',
           }}>
-            <div style={{ width: '3px', height: '3px', borderRadius: '50%', background: color, opacity: 0.7 }} />
-            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.16em', color: 'rgba(141,160,200,0.35)' }}>
+            <div style={{ width: '3px', height: '3px', borderRadius: '50%', background: color }} />
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.16em', color }}>
               DETALHES DA ETAPA
             </span>
           </div>
 
           <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {/* Localização — só nas 8 etapas */}
+            {/* Localização */}
             {hasLocField && (
               <div>
                 <label style={{
                   display: 'flex', alignItems: 'center', gap: '5px',
                   fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em',
-                  color: 'rgba(255,140,66,0.8)', marginBottom: '7px',
+                  color: '#ff6b35', marginBottom: '7px',
                 }}>
-                  <MapPin size={9} color="#ff8c42" />
+                  <MapPin size={9} color="#ff6b35" />
                   LOCALIZAÇÃO
                 </label>
                 <div style={{ position: 'relative' }}>
                   <MapPin size={12} style={{
                     position: 'absolute', left: '11px', top: '50%', transform: 'translateY(-50%)',
-                    color: 'rgba(255,107,53,0.4)', pointerEvents: 'none',
+                    color: '#fca27e', pointerEvents: 'none',
                   }} />
                   <input
                     type="text"
@@ -197,19 +233,18 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
                     placeholder="Ex: Galpão A - Vaga 03"
                     style={{
                       width: '100%', fontSize: '12px', fontWeight: 500,
-                      background: 'rgba(255,107,53,0.04)',
-                      border: '1px solid rgba(255,107,53,0.18)',
+                      background: '#fff7f5', border: '1px solid #fecba1',
                       borderRadius: '9px', padding: '9px 12px 9px 32px',
-                      color: '#f0f4ff', fontFamily: 'inherit',
+                      color: '#374151', fontFamily: 'inherit',
                       outline: 'none', transition: 'border-color 0.15s, box-shadow 0.15s',
                       boxSizing: 'border-box',
                     }}
                     onFocus={e => {
-                      e.target.style.borderColor = 'rgba(255,107,53,0.45)';
+                      e.target.style.borderColor = '#ff6b35';
                       e.target.style.boxShadow = '0 0 0 3px rgba(255,107,53,0.08)';
                     }}
                     onBlur={e => {
-                      e.target.style.borderColor = 'rgba(255,107,53,0.18)';
+                      e.target.style.borderColor = '#fecba1';
                       e.target.style.boxShadow = 'none';
                     }}
                   />
@@ -222,9 +257,9 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
               <label style={{
                 display: 'flex', alignItems: 'center', gap: '5px',
                 fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em',
-                color: 'rgba(116,143,252,0.6)', marginBottom: '7px',
+                color: '#4c6ef5', marginBottom: '7px',
               }}>
-                <span style={{ width: '9px', height: '9px', borderRadius: '2px', background: 'rgba(76,110,245,0.4)', display: 'inline-block', flexShrink: 0 }} />
+                <span style={{ width: '9px', height: '9px', borderRadius: '2px', background: '#c7d2fe', display: 'inline-block', flexShrink: 0 }} />
                 OBSERVAÇÕES
               </label>
               <textarea
@@ -234,51 +269,152 @@ export function StageItem({ entry, recordId, index }: StageItemProps) {
                 rows={3}
                 style={{
                   width: '100%', fontSize: '12px',
-                  background: 'rgba(76,110,245,0.03)',
-                  border: '1px solid rgba(76,110,245,0.15)',
+                  background: '#f5f7ff', border: '1px solid #c7d2fe',
                   borderRadius: '9px', padding: '9px 12px',
-                  color: '#c5d0e8', fontFamily: 'inherit',
+                  color: '#374151', fontFamily: 'inherit',
                   resize: 'none', outline: 'none', lineHeight: 1.65,
                   boxSizing: 'border-box', display: 'block',
                   transition: 'border-color 0.15s, box-shadow 0.15s',
                 }}
                 onFocus={e => {
-                  e.target.style.borderColor = 'rgba(76,110,245,0.4)';
+                  e.target.style.borderColor = '#4c6ef5';
                   e.target.style.boxShadow = '0 0 0 3px rgba(76,110,245,0.07)';
                 }}
                 onBlur={e => {
-                  e.target.style.borderColor = 'rgba(76,110,245,0.15)';
+                  e.target.style.borderColor = '#c7d2fe';
                   e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
 
-            {/* Histórico de alterações */}
+            {/* Fotos */}
+            {hasLocField && (
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                  <label style={{
+                    display: 'flex', alignItems: 'center', gap: '5px',
+                    fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em',
+                    color: '#4c6ef5', flex: 1,
+                  }}>
+                    <Camera size={9} color="#4c6ef5" />
+                    FOTOS {photoCount > 0 && `(${photoCount})`}
+                  </label>
+                </div>
+
+                {/* Botões câmera + galeria */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: photoCount > 0 ? '10px' : '0' }}>
+                  <button
+                    onClick={() => cameraRef.current?.click()}
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                      padding: '9px 12px', fontSize: '11px', fontWeight: 600,
+                      fontFamily: 'inherit', cursor: 'pointer', borderRadius: '8px',
+                      background: '#1a2332', border: '1px solid #2d3748',
+                      color: '#ffffff', transition: 'all 0.15s',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = '#2d3748')}
+                    onMouseLeave={e => (e.currentTarget.style.background = '#1a2332')}
+                  >
+                    <Camera size={12} />
+                    Câmera
+                  </button>
+                  <input
+                    ref={cameraRef}
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    style={{ display: 'none' }}
+                    onChange={e => { handlePhotoFiles(e.target.files); e.target.value = ''; }}
+                  />
+
+                  <button
+                    onClick={() => galleryRef.current?.click()}
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                      padding: '9px 12px', fontSize: '11px', fontWeight: 600,
+                      fontFamily: 'inherit', cursor: 'pointer', borderRadius: '8px',
+                      background: '#eef2ff', border: '1px solid #c7d2fe',
+                      color: '#4c6ef5', transition: 'all 0.15s',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = '#e0e7ff')}
+                    onMouseLeave={e => (e.currentTarget.style.background = '#eef2ff')}
+                  >
+                    <ChevronRight size={12} style={{ transform: 'rotate(-45deg)' }} />
+                    Galeria
+                  </button>
+                  <input
+                    ref={galleryRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    style={{ display: 'none' }}
+                    onChange={e => { handlePhotoFiles(e.target.files); e.target.value = ''; }}
+                  />
+                </div>
+
+                {/* Carousel de fotos */}
+                {photoCount > 0 && (
+                  <div style={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', background: '#f3f4f6' }}>
+                    <img
+                      src={allPhotos[photoIdx]}
+                      alt=""
+                      style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
+                    />
+                    {photoCount > 1 && (
+                      <>
+                        <button
+                          onClick={() => setPhotoIdx(i => (i - 1 + photoCount) % photoCount)}
+                          style={{ position: 'absolute', left: '6px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        >
+                          <ChevronLeft size={14} />
+                        </button>
+                        <button
+                          onClick={() => setPhotoIdx(i => (i + 1) % photoCount)}
+                          style={{ position: 'absolute', right: '6px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        >
+                          <ChevronRight size={14} />
+                        </button>
+                        <span style={{ position: 'absolute', bottom: '6px', left: '50%', transform: 'translateX(-50%)', fontSize: '10px', color: 'rgba(255,255,255,0.85)', background: 'rgba(0,0,0,0.5)', borderRadius: '5px', padding: '2px 7px' }}>
+                          {photoIdx + 1}/{photoCount}
+                        </span>
+                      </>
+                    )}
+                    <button
+                      onClick={handleRemovePhoto}
+                      style={{ position: 'absolute', top: '6px', right: '6px', background: 'rgba(239,68,68,0.85)', border: 'none', borderRadius: '50%', width: '26px', height: '26px', cursor: 'pointer', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <Trash2 size={11} />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Histórico */}
             {entry.history && entry.history.length > 0 && (
               <div>
                 <label style={{
                   display: 'flex', alignItems: 'center', gap: '5px',
                   fontSize: '9px', fontWeight: 700, letterSpacing: '0.18em',
-                  color: 'rgba(141,160,200,0.4)', marginBottom: '8px',
+                  color: '#9ca3af', marginBottom: '8px',
                 }}>
-                  <History size={9} color="rgba(141,160,200,0.4)" />
+                  <History size={9} color="#9ca3af" />
                   HISTÓRICO DE ALTERAÇÕES
                 </label>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   {[...entry.history].reverse().map((h, i) => {
-                    const dotColor = h.status === 'done' ? '#10b981' : h.status === 'in_progress' ? '#ff6b35' : '#304280';
+                    const dotColor = h.status === 'done' ? '#10b981' : h.status === 'in_progress' ? '#ff6b35' : '#4c6ef5';
                     return (
                       <div key={i} style={{
                         display: 'flex', alignItems: 'center', gap: '10px',
                         padding: '6px 10px', borderRadius: '7px',
-                        background: 'rgba(76,110,245,0.03)',
-                        border: '1px solid rgba(76,110,245,0.08)',
+                        background: '#ffffff', border: '1px solid #f3f4f6',
                       }}>
                         <div style={{ width: '6px', height: '6px', borderRadius: '50%', flexShrink: 0, background: dotColor }} />
-                        <span style={{ fontSize: '11px', color: 'rgba(197,208,232,0.6)', flex: 1 }}>
+                        <span style={{ fontSize: '11px', color: '#6b7280', flex: 1 }}>
                           {statusDisplayLabel[h.status] ?? h.status}
                         </span>
-                        <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.35)', fontFamily: "'Geist Mono', monospace", whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '10px', color: '#9ca3af', fontFamily: "'Geist Mono', monospace", whiteSpace: 'nowrap' }}>
                           {formatDate(h.changedAt)}
                         </span>
                       </div>
