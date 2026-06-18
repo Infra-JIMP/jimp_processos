@@ -68,7 +68,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 9999,
-      background: '#006a7a',
+      background: '#f5f6f8',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       padding: '32px',
@@ -81,7 +81,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
       {/* Subtle grid */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        backgroundImage: 'radial-gradient(rgba(76,110,245,0.07) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(rgba(76,110,245,0.12) 1px, transparent 1px)',
         backgroundSize: '28px 28px',
       }} />
 
@@ -90,7 +90,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         position: 'absolute', top: '50%', left: '50%',
         transform: 'translate(-50%, -50%)',
         width: '500px', height: '500px', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(76,110,245,0.07) 0%, transparent 65%)',
+        background: 'radial-gradient(circle, rgba(76,110,245,0.06) 0%, transparent 65%)',
         pointerEvents: 'none',
       }} />
 
@@ -117,8 +117,9 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         }}>
           <div style={{
             width: '72px', height: '72px', borderRadius: '20px',
-            background: 'rgba(255,107,53,0.12)',
-            boxShadow: '0 0 48px rgba(255,107,53,0.35), 0 0 100px rgba(255,107,53,0.15)',
+            background: 'rgba(255,107,53,0.08)',
+            border: '1px solid rgba(255,107,53,0.15)',
+            boxShadow: '0 0 40px rgba(255,107,53,0.18), 0 4px 24px rgba(0,0,0,0.06)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '10px',
           }}>
@@ -131,11 +132,11 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           fontFamily: "'Bebas Neue', sans-serif",
           fontSize: 'clamp(56px, 12vw, 100px)',
           letterSpacing: '0.06em',
-          color: '#f0f4ff',
+          color: '#1a2332',
           lineHeight: 1,
           textAlign: 'center',
           minHeight: 'clamp(56px, 12vw, 100px)',
-          textShadow: '0 0 80px rgba(76,110,245,0.25)',
+          textShadow: '0 0 60px rgba(76,110,245,0.12)',
           userSelect: 'none',
         }}>
           {typedGerencial}
@@ -181,7 +182,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           {/* Track */}
           <div style={{
             height: '2px', borderRadius: '2px',
-            background: 'rgba(76,110,245,0.12)',
+            background: 'rgba(76,110,245,0.08)',
             position: 'relative', overflow: 'visible',
           }}>
             {/* Fill */}
@@ -217,7 +218,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
             <span style={{
               fontFamily: "'Geist Mono', monospace",
               fontSize: '9px', letterSpacing: '0.14em',
-              color: barDone ? '#10b981' : 'rgba(141,160,200,0.3)',
+              color: barDone ? '#10b981' : '#9ca3af',
               transition: 'color 0.4s ease',
             }}>
               {barDone ? 'SISTEMA PRONTO' : 'INICIALIZANDO'}
