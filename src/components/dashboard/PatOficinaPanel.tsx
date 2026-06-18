@@ -52,7 +52,7 @@ function ClientChip({ record, accentRgb, accent }: { record: NSRecord; accentRgb
       }} />
       <div style={{ minWidth: 0 }}>
         <p style={{
-          fontSize: '12px', fontWeight: 700, color: '#e8edf7',
+          fontSize: '12px', fontWeight: 700, color: '#1a2332',
           fontFamily: "'Geist Mono', monospace",
           whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
           maxWidth: '120px',
@@ -120,7 +120,7 @@ function SectionColumn({
 
       {/* Cards */}
       {records.length === 0 ? (
-        <p style={{ fontSize: '11px', color: 'rgba(141,160,200,0.25)', fontStyle: 'italic', padding: '4px 0' }}>
+        <p style={{ fontSize: '11px', color: '#9ca3af', fontStyle: 'italic', padding: '4px 0' }}>
           Nenhum em andamento
         </p>
       ) : (
@@ -157,10 +157,10 @@ export function PatOficinaPanel({ records }: PatOficinaPanelProps) {
       <div style={{
         marginBottom: '20px',
         borderRadius: '14px',
-        border: '1px solid rgba(76,110,245,0.16)',
-        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
+        border: '1px solid #e8eaef',
+        background: '#ffffff',
         overflow: 'hidden',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
       }}>
         {/* Header */}
         <button
@@ -172,7 +172,7 @@ export function PatOficinaPanel({ records }: PatOficinaPanelProps) {
             borderBottom: collapsed ? 'none' : '1px solid rgba(76,110,245,0.1)',
             transition: 'background 0.15s ease',
           }}
-          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(76,110,245,0.04)')}
+          onMouseEnter={e => (e.currentTarget.style.background = '#f8f9fb')}
           onMouseLeave={e => (e.currentTarget.style.background = 'none')}
         >
           {/* Live dot */}
@@ -198,7 +198,7 @@ export function PatOficinaPanel({ records }: PatOficinaPanelProps) {
             {total} em andamento
           </span>
 
-          <div style={{ marginLeft: 'auto', color: 'rgba(116,143,252,0.4)' }}>
+          <div style={{ marginLeft: 'auto', color: '#9ca3af' }}>
             {collapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
           </div>
         </button>

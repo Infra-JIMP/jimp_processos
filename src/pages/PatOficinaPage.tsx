@@ -62,15 +62,15 @@ function RecordRow({
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '5px' }}>
           <span style={{
-            fontSize: '13px', fontWeight: 700, color: '#e8edf7',
+            fontSize: '13px', fontWeight: 700, color: '#1a2332',
             fontFamily: "'Geist Mono', monospace",
             whiteSpace: 'nowrap',
           }}>
             {record.ns}
           </span>
-          <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.25)' }}>·</span>
+          <span style={{ fontSize: '10px', color: '#d1d5db' }}>·</span>
           <span style={{
-            fontSize: '12px', color: 'rgba(141,160,200,0.55)',
+            fontSize: '12px', color: '#6b7280',
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
           }}>
             {record.clientName}
@@ -91,7 +91,7 @@ function RecordRow({
             }} />
           </div>
           <span style={{
-            fontSize: '10px', color: `rgba(${accentRgb},0.5)`,
+            fontSize: '10px', color: '#9ca3af',
             fontFamily: "'Geist Mono', monospace", whiteSpace: 'nowrap',
           }}>
             {progress}%
@@ -123,17 +123,17 @@ function Section({
   return (
     <div style={{
       minWidth: 0,
-      background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-      border: `1px solid rgba(${accentRgb},0.18)`,
+      background: '#ffffff',
+      border: `1px solid #e8eaef`,
       borderRadius: '14px',
       overflow: 'hidden',
-      boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
+      boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
     }}>
       {/* Header */}
       <div style={{
         padding: '14px 16px 12px',
-        borderBottom: `1px solid rgba(${accentRgb},0.12)`,
-        background: `rgba(${accentRgb},0.04)`,
+        borderBottom: `1px solid #e8eaef`,
+        background: '#f8f9fb',
         display: 'flex', alignItems: 'center', gap: '10px',
       }}>
         <div style={{
@@ -147,7 +147,7 @@ function Section({
           }}>
             {title}
           </h2>
-          <p style={{ fontSize: '10px', color: 'rgba(141,160,200,0.35)', marginTop: '2px', letterSpacing: '0.04em' }}>
+          <p style={{ fontSize: '10px', color: '#9ca3af', marginTop: '2px', letterSpacing: '0.04em' }}>
             {subtitle}
           </p>
         </div>
@@ -168,7 +168,7 @@ function Section({
         {records.length === 0 ? (
           <div style={{
             padding: '32px 0', textAlign: 'center',
-            color: 'rgba(141,160,200,0.25)', fontSize: '12px', fontStyle: 'italic',
+            color: '#9ca3af', fontSize: '12px', fontStyle: 'italic',
           }}>
             Nenhum NS em andamento
           </div>
@@ -209,12 +209,12 @@ export function PatOficinaPage() {
             animation: 'dotPulse 1.5s ease-in-out infinite',
           }} />
           <h1 className="font-display" style={{
-            fontSize: '22px', letterSpacing: '0.08em', color: '#f0f4ff',
+            fontSize: '22px', letterSpacing: '0.08em', color: '#1a2332',
           }}>
             PAT / OFIC
           </h1>
         </div>
-        <p style={{ fontSize: '12px', color: 'rgba(141,160,200,0.4)', marginLeft: '18px' }}>
+        <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '18px' }}>
           {patRecords.length + oficinaRecords.length} NS em andamento nessas etapas
         </p>
       </div>

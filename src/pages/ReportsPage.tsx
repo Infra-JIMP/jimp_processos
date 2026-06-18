@@ -90,7 +90,7 @@ export function ReportsPage() {
         <div style={{ position: 'relative', flex: '1 1 180px', minWidth: '180px', maxWidth: '300px' }}>
           <Search size={12} style={{
             position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)',
-            color: 'rgba(116,143,252,0.5)', pointerEvents: 'none',
+            color: '#9ca3af', pointerEvents: 'none',
           }} />
           <input
             type="text"
@@ -100,18 +100,18 @@ export function ReportsPage() {
             style={{
               width: '100%', paddingLeft: '30px', paddingRight: search ? '30px' : '12px',
               paddingTop: '8px', paddingBottom: '8px', fontSize: '12px',
-              background: 'rgba(8,14,29,0.9)', border: '1px solid rgba(76,110,245,0.15)',
-              borderRadius: '10px', color: '#c5d0e8', fontFamily: 'inherit', outline: 'none',
+              background: '#ffffff', border: '1px solid #e2e5eb',
+              borderRadius: '10px', color: '#1a2332', fontFamily: 'inherit', outline: 'none',
               transition: 'border-color 0.15s',
             }}
-            onFocus={e => (e.target.style.borderColor = 'rgba(76,110,245,0.4)')}
-            onBlur={e => (e.target.style.borderColor = 'rgba(76,110,245,0.15)')}
+            onFocus={e => (e.target.style.borderColor = '#4c6ef5')}
+            onBlur={e => (e.target.style.borderColor = '#e2e5eb')}
           />
           {search && (
             <button onClick={() => setSearch('')} style={{
               position: 'absolute', right: '9px', top: '50%', transform: 'translateY(-50%)',
               background: 'none', border: 'none', padding: '2px', cursor: 'pointer',
-              color: 'rgba(141,160,200,0.4)',
+              color: '#9ca3af',
             }}>
               <X size={11} />
             </button>
@@ -125,9 +125,9 @@ export function ReportsPage() {
               display: 'flex', alignItems: 'center', gap: '6px',
               padding: '7px 12px', fontSize: '11px', fontWeight: 600,
               fontFamily: 'inherit', cursor: 'pointer',
-              background: allSelected ? 'rgba(76,110,245,0.15)' : 'rgba(76,110,245,0.06)',
-              border: `1px solid ${allSelected ? 'rgba(76,110,245,0.35)' : 'rgba(76,110,245,0.15)'}`,
-              borderRadius: '8px', color: allSelected ? '#748ffc' : 'rgba(141,160,200,0.6)',
+              background: allSelected ? '#eef2ff' : '#f3f4f6',
+              border: `1px solid ${allSelected ? '#c7d2fe' : '#e2e5eb'}`,
+              borderRadius: '8px', color: allSelected ? '#4c6ef5' : '#6b7280',
               transition: 'all 0.15s',
             }}
           >
@@ -170,7 +170,7 @@ export function ReportsPage() {
             }}>
               {value}
             </span>
-            <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.45)', letterSpacing: '0.04em' }}>
+            <span style={{ fontSize: '10px', color: '#9ca3af', letterSpacing: '0.04em' }}>
               {label}
             </span>
           </div>
@@ -179,7 +179,7 @@ export function ReportsPage() {
 
       {/* Records */}
       {filtered.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '48px 0', color: 'rgba(141,160,200,0.3)', fontSize: '13px' }}>
+        <div style={{ textAlign: 'center', padding: '48px 0', color: '#9ca3af', fontSize: '13px' }}>
           Nenhum resultado encontrado.
         </div>
       ) : (
@@ -195,21 +195,26 @@ export function ReportsPage() {
               <div
                 key={record.id}
                 style={{
-                  background: isSelected
-                    ? 'linear-gradient(135deg, rgba(76,110,245,0.08) 0%, rgba(76,110,245,0.04) 100%)'
-                    : 'linear-gradient(135deg, #162035 0%, #00afc8 100%)',
-                  border: `1px solid ${isSelected ? 'rgba(76,110,245,0.35)' : 'rgba(76,110,245,0.08)'}`,
+                  background: isSelected ? '#eef2ff' : '#ffffff',
+                  border: `1px solid ${isSelected ? '#c7d2fe' : '#e8eaef'}`,
                   borderRadius: '11px',
                   display: 'flex', alignItems: 'center', gap: '12px',
                   padding: '10px 14px',
                   transition: 'all 0.15s ease',
                   position: 'relative', overflow: 'hidden',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
                 }}
                 onMouseEnter={e => {
-                  if (!isSelected) (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(76,110,245,0.18)';
+                  if (!isSelected) {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = '#c7d2fe';
+                    (e.currentTarget as HTMLDivElement).style.background = '#f8f9fb';
+                  }
                 }}
                 onMouseLeave={e => {
-                  if (!isSelected) (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(76,110,245,0.08)';
+                  if (!isSelected) {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = '#e8eaef';
+                    (e.currentTarget as HTMLDivElement).style.background = '#ffffff';
+                  }
                 }}
               >
                 {/* Left status bar */}
@@ -240,13 +245,13 @@ export function ReportsPage() {
                   onMouseLeave={hidePreview}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '5px' }}>
                     <p style={{
-                      fontWeight: 700, fontSize: '13px', color: '#e8edf7',
+                      fontWeight: 700, fontSize: '13px', color: '#1a2332',
                       fontFamily: "'Geist Mono', monospace",
                     }}>
                       {record.ns}
                     </p>
-                    <span style={{ color: 'rgba(141,160,200,0.2)', fontSize: '10px' }}>·</span>
-                    <p style={{ fontSize: '12px', color: 'rgba(141,160,200,0.55)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <span style={{ color: '#d1d5db', fontSize: '10px' }}>·</span>
+                    <p style={{ fontSize: '12px', color: '#6b7280', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {record.clientName}
                     </p>
                     <Badge status={status} />
@@ -263,7 +268,7 @@ export function ReportsPage() {
                         transition: 'width 0.3s ease',
                       }} />
                     </div>
-                    <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.35)', fontFamily: "'Geist Mono', monospace", whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '10px', color: '#9ca3af', fontFamily: "'Geist Mono', monospace", whiteSpace: 'nowrap' }}>
                       {done}/{STAGES.length} · {progress}%
                     </span>
                   </div>
@@ -278,13 +283,13 @@ export function ReportsPage() {
                       display: 'flex', alignItems: 'center', gap: '5px',
                       padding: '5px 10px', fontSize: '11px', fontWeight: 600,
                       fontFamily: 'inherit', cursor: isExporting ? 'not-allowed' : 'pointer',
-                      background: 'rgba(76,110,245,0.07)',
-                      border: '1px solid rgba(76,110,245,0.15)',
-                      borderRadius: '7px', color: 'rgba(116,143,252,0.7)',
+                      background: '#eef2ff',
+                      border: '1px solid #c7d2fe',
+                      borderRadius: '7px', color: '#4c6ef5',
                       transition: 'all 0.15s', opacity: isExporting ? 0.5 : 1,
                     }}
-                    onMouseEnter={e => { if (!isExporting) (e.currentTarget.style.background = 'rgba(76,110,245,0.14)'); }}
-                    onMouseLeave={e => { (e.currentTarget.style.background = 'rgba(76,110,245,0.07)'); }}
+                    onMouseEnter={e => { if (!isExporting) (e.currentTarget.style.background = '#e0e7ff'); }}
+                    onMouseLeave={e => { (e.currentTarget.style.background = '#eef2ff'); }}
                   >
                     <FileText size={11} />
                     PDF

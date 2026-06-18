@@ -222,10 +222,10 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
       ref={popRef}
       style={{
         position: 'absolute', top, left, width: W, zIndex: 2000,
-        background: 'linear-gradient(135deg, #005f70 0%, #004a58 100%)',
-        border: `1px solid ${color}44`,
+        background: '#ffffff',
+        border: `1px solid #e2e5eb`,
         borderRadius: '14px',
-        boxShadow: '0 20px 60px rgba(0,0,0,0.7)',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.12)',
         animation: 'scaleIn 0.15s cubic-bezier(0.16,1,0.3,1) both',
         overflow: 'hidden',
       }}
@@ -234,14 +234,14 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
       <div style={{
         display: 'flex', alignItems: 'center', gap: '8px',
         padding: '10px 12px',
-        background: bg,
-        borderBottom: `1px solid ${color}22`,
+        background: '#f8f9fb',
+        borderBottom: `1px solid #e8eaef`,
       }}>
-        <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: color, boxShadow: `0 0 6px ${color}` }} />
+        <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: color }} />
         <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', color, flex: 1 }}>
           {stageLabel}
         </span>
-        <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(141,160,200,0.4)', display: 'flex', padding: '2px' }}>
+        <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9ca3af', display: 'flex', padding: '2px' }}>
           <X size={12} />
         </button>
       </div>
@@ -267,12 +267,12 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
         {(stage.startedAt || stage.completedAt) && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
             {stage.startedAt && (
-              <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.4)', fontFamily: "'Geist Mono', monospace" }}>
+              <span style={{ fontSize: '10px', color: '#9ca3af', fontFamily: "'Geist Mono', monospace" }}>
                 ▶ {formatDate(stage.startedAt)}
               </span>
             )}
             {stage.completedAt && (
-              <span style={{ fontSize: '10px', color: 'rgba(52,211,153,0.6)', fontFamily: "'Geist Mono', monospace" }}>
+              <span style={{ fontSize: '10px', color: '#059669', fontFamily: "'Geist Mono', monospace" }}>
                 ✓ {formatDate(stage.completedAt)}
               </span>
             )}
@@ -281,8 +281,8 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
 
         {hasLocField && (
         <div>
-          <label style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', color: 'rgba(255,140,66,0.7)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '5px' }}>
-            <MapPin size={9} color="#ff8c42" /> LOCALIZAÇÃO
+          <label style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', color: '#ff6b35', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '5px' }}>
+            <MapPin size={9} color="#ff6b35" /> LOCALIZAÇÃO
           </label>
           <input
             type="text"
@@ -291,19 +291,19 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
             placeholder="Ex: Galpão A - Vaga 03"
             style={{
               width: '100%', padding: '7px 10px', fontSize: '12px', boxSizing: 'border-box',
-              background: 'rgba(255,107,53,0.04)', border: '1px solid rgba(255,107,53,0.18)',
-              borderRadius: '8px', color: '#f0f4ff', fontFamily: 'inherit', outline: 'none',
+              background: '#fff7f5', border: '1px solid #fecba1',
+              borderRadius: '8px', color: '#374151', fontFamily: 'inherit', outline: 'none',
             }}
-            onFocus={e => (e.target.style.borderColor = 'rgba(255,107,53,0.45)')}
-            onBlur={e => (e.target.style.borderColor = 'rgba(255,107,53,0.18)')}
+            onFocus={e => (e.target.style.borderColor = '#ff6b35')}
+            onBlur={e => (e.target.style.borderColor = '#fecba1')}
           />
         </div>
         )}
 
         {hasLocField && (
         <div>
-          <label style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', color: 'rgba(116,143,252,0.6)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '5px' }}>
-            <FileText size={9} color="#748ffc" /> OBSERVAÇÕES
+          <label style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', color: '#4c6ef5', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '5px' }}>
+            <FileText size={9} color="#4c6ef5" /> OBSERVAÇÕES
           </label>
           <textarea
             value={stage.notes ?? ''}
@@ -312,12 +312,12 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
             rows={3}
             style={{
               width: '100%', padding: '7px 10px', fontSize: '12px', boxSizing: 'border-box',
-              background: 'rgba(76,110,245,0.03)', border: '1px solid rgba(76,110,245,0.15)',
-              borderRadius: '8px', color: '#c5d0e8', fontFamily: 'inherit', resize: 'none',
+              background: '#f5f7ff', border: '1px solid #c7d2fe',
+              borderRadius: '8px', color: '#374151', fontFamily: 'inherit', resize: 'none',
               outline: 'none', lineHeight: 1.6, display: 'block',
             }}
-            onFocus={e => (e.target.style.borderColor = 'rgba(76,110,245,0.4)')}
-            onBlur={e => (e.target.style.borderColor = 'rgba(76,110,245,0.15)')}
+            onFocus={e => (e.target.style.borderColor = '#4c6ef5')}
+            onBlur={e => (e.target.style.borderColor = '#c7d2fe')}
           />
         </div>
         )}
@@ -325,19 +325,19 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
         {hasLocField && (
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '6px' }}>
-            <label style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', color: 'rgba(116,143,252,0.6)', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
-              <Camera size={9} color="#748ffc" /> FOTOS {allPhotos.length > 0 && `(${allPhotos.length})`}
+            <label style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.14em', color: '#4c6ef5', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
+              <Camera size={9} color="#4c6ef5" /> FOTOS {allPhotos.length > 0 && `(${allPhotos.length})`}
             </label>
             <button
               onClick={() => fileRef.current?.click()}
               style={{
                 padding: '3px 8px', fontSize: '10px', fontWeight: 600, fontFamily: 'inherit',
                 borderRadius: '6px', cursor: 'pointer',
-                background: 'rgba(76,110,245,0.1)', border: '1px solid rgba(76,110,245,0.25)',
-                color: '#748ffc', transition: 'all 0.15s',
+                background: '#eef2ff', border: '1px solid #c7d2fe',
+                color: '#4c6ef5', transition: 'all 0.15s',
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(76,110,245,0.18)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(76,110,245,0.1)')}
+              onMouseEnter={e => (e.currentTarget.style.background = '#e0e7ff')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#eef2ff')}
             >
               + Adicionar
             </button>
@@ -345,7 +345,7 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
           </div>
 
           {allPhotos.length > 0 && (
-            <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', background: '#006a7a' }}>
+            <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', background: '#f3f4f6' }}>
               <img src={allPhotos[photoIdx]} alt="" style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }} />
               {allPhotos.length > 1 && (
                 <>
@@ -384,11 +384,295 @@ function CellPopover({ record, stage, stageLabel, anchorRect, onClose }: CellPop
   );
 }
 
+// ── Mobile Stage Edit Panel ───────────────────────────────────────────────────
+interface MobileStagePanelProps {
+  record: NSRecord;
+  stageId: StageId;
+  stageLabel: string;
+  onClose: () => void;
+}
+
+function MobileStagePanel({ record, stageId, stageLabel, onClose }: MobileStagePanelProps) {
+  const stage = record.stages.find(s => s.stageId === stageId)!;
+  const updateStageStatus   = useAppStore(s => s.updateStageStatus);
+  const updateStageLocation = useAppStore(s => s.updateStageLocation);
+  const updateStageNotes    = useAppStore(s => s.updateStageNotes);
+  const addStagePhoto       = useAppStore(s => s.addStagePhoto);
+  const removeStagePhoto    = useAppStore(s => s.removeStagePhoto);
+  const cameraRef = useRef<HTMLInputElement>(null);
+  const galleryRef = useRef<HTMLInputElement>(null);
+  const [photoIdx, setPhotoIdx] = useState(0);
+
+  const allPhotos = [...(stage.locationPhotos ?? []), ...(stage.notesPhotos ?? [])];
+  const hasLocField = STAGES_WITH_LOCATION.has(stageId);
+  const color = STATUS_COLOR[stage.status];
+  const bg = STATUS_BG[stage.status];
+
+  const handlePhotoFiles = (files: FileList | null) => {
+    if (!files) return;
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        if (ev.target?.result) addStagePhoto(record.id, stageId, 'notesPhotos', ev.target.result as string);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleRemovePhoto = () => {
+    const locCount = (stage.locationPhotos ?? []).length;
+    const field = photoIdx < locCount ? 'locationPhotos' : 'notesPhotos';
+    const idx = photoIdx < locCount ? photoIdx : photoIdx - locCount;
+    removeStagePhoto(record.id, stageId, field, idx);
+    setPhotoIdx(p => Math.max(0, p - 1));
+  };
+
+  return createPortal(
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        style={{
+          position: 'fixed', inset: 0, zIndex: 3000,
+          background: 'rgba(15,23,42,0.5)', backdropFilter: 'blur(3px)',
+        }}
+      />
+      {/* Bottom sheet */}
+      <div
+        style={{
+          position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 3001,
+          background: '#ffffff',
+          borderRadius: '20px 20px 0 0',
+          boxShadow: '0 -8px 40px rgba(0,0,0,0.15)',
+          maxHeight: '85vh',
+          overflowY: 'auto',
+          animation: 'slideUp 0.28s cubic-bezier(0.16,1,0.3,1) both',
+        }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Handle bar */}
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0 4px' }}>
+          <div style={{ width: '36px', height: '4px', borderRadius: '2px', background: '#e5e7eb' }} />
+        </div>
+
+        {/* Header */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '10px',
+          padding: '8px 18px 12px',
+          borderBottom: '1px solid #f3f4f6',
+        }}>
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: color, flexShrink: 0 }} />
+          <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', color, flex: 1, fontFamily: "'Geist Mono', monospace" }}>
+            {stageLabel}
+          </span>
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9ca3af', display: 'flex', padding: '4px' }}
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Status toggle */}
+          <button
+            onClick={() => updateStageStatus(record.id, stageId, statusCycle[stage.status])}
+            style={{
+              width: '100%', padding: '12px 14px', borderRadius: '10px',
+              background: bg, border: `1px solid ${color}55`,
+              cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700,
+              fontSize: '12px', color,
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              transition: 'all 0.15s',
+            }}
+          >
+            <span>{STATUS_LABEL[stage.status]}</span>
+            <span style={{ fontSize: '10px', opacity: 0.6 }}>toque para avançar →</span>
+          </button>
+
+          {(stage.startedAt || stage.completedAt) && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              {stage.startedAt && (
+                <span style={{ fontSize: '11px', color: '#9ca3af', fontFamily: "'Geist Mono', monospace" }}>
+                  ▶ {formatDate(stage.startedAt)}
+                </span>
+              )}
+              {stage.completedAt && (
+                <span style={{ fontSize: '11px', color: '#059669', fontFamily: "'Geist Mono', monospace" }}>
+                  ✓ {formatDate(stage.completedAt)}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Location */}
+          {hasLocField && (
+            <div>
+              <label style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', color: '#ff6b35', display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '6px' }}>
+                <MapPin size={10} color="#ff6b35" /> LOCALIZAÇÃO
+              </label>
+              <input
+                type="text"
+                value={stage.location ?? ''}
+                onChange={e => updateStageLocation(record.id, stageId, e.target.value)}
+                placeholder="Ex: Galpão A - Vaga 03"
+                style={{
+                  width: '100%', padding: '10px 12px', fontSize: '14px', boxSizing: 'border-box',
+                  background: '#fff7f5', border: '1px solid #fecba1',
+                  borderRadius: '10px', color: '#374151', fontFamily: 'inherit', outline: 'none',
+                }}
+                onFocus={e => (e.target.style.borderColor = '#ff6b35')}
+                onBlur={e => (e.target.style.borderColor = '#fecba1')}
+              />
+            </div>
+          )}
+
+          {/* Notes */}
+          {hasLocField && (
+            <div>
+              <label style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', color: '#4c6ef5', display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '6px' }}>
+                <FileText size={10} color="#4c6ef5" /> OBSERVAÇÕES
+              </label>
+              <textarea
+                value={stage.notes ?? ''}
+                onChange={e => updateStageNotes(record.id, stageId, e.target.value)}
+                placeholder="Observações desta etapa..."
+                rows={3}
+                style={{
+                  width: '100%', padding: '10px 12px', fontSize: '14px', boxSizing: 'border-box',
+                  background: '#f5f7ff', border: '1px solid #c7d2fe',
+                  borderRadius: '10px', color: '#374151', fontFamily: 'inherit', resize: 'none',
+                  outline: 'none', lineHeight: 1.6, display: 'block',
+                }}
+                onFocus={e => (e.target.style.borderColor = '#4c6ef5')}
+                onBlur={e => (e.target.style.borderColor = '#c7d2fe')}
+              />
+            </div>
+          )}
+
+          {/* Photos */}
+          {hasLocField && (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
+                <label style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', color: '#4c6ef5', display: 'flex', alignItems: 'center', gap: '5px', flex: 1 }}>
+                  <Camera size={10} color="#4c6ef5" /> FOTOS {allPhotos.length > 0 && `(${allPhotos.length})`}
+                </label>
+              </div>
+
+              {/* Camera + Gallery buttons */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: allPhotos.length > 0 ? '10px' : '0' }}>
+                {/* Camera button — opens native camera on mobile */}
+                <button
+                  onClick={() => cameraRef.current?.click()}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                    padding: '12px', fontSize: '12px', fontWeight: 600,
+                    fontFamily: 'inherit', cursor: 'pointer', borderRadius: '10px',
+                    background: '#1a2332', border: '1px solid #2d3748',
+                    color: '#ffffff', transition: 'all 0.15s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.background = '#2d3748')}
+                  onMouseLeave={e => (e.currentTarget.style.background = '#1a2332')}
+                >
+                  <Camera size={14} />
+                  Câmera
+                </button>
+                <input
+                  ref={cameraRef}
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  style={{ display: 'none' }}
+                  onChange={e => { handlePhotoFiles(e.target.files); e.target.value = ''; }}
+                />
+
+                {/* Gallery button — opens photo library */}
+                <button
+                  onClick={() => galleryRef.current?.click()}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                    padding: '12px', fontSize: '12px', fontWeight: 600,
+                    fontFamily: 'inherit', cursor: 'pointer', borderRadius: '10px',
+                    background: '#eef2ff', border: '1px solid #c7d2fe',
+                    color: '#4c6ef5', transition: 'all 0.15s',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.background = '#e0e7ff')}
+                  onMouseLeave={e => (e.currentTarget.style.background = '#eef2ff')}
+                >
+                  <ChevronRight size={14} style={{ transform: 'rotate(-45deg)' }} />
+                  Galeria
+                </button>
+                <input
+                  ref={galleryRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  style={{ display: 'none' }}
+                  onChange={e => { handlePhotoFiles(e.target.files); e.target.value = ''; }}
+                />
+              </div>
+
+              {/* Photo carousel */}
+              {allPhotos.length > 0 && (
+                <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', background: '#f3f4f6' }}>
+                  <img
+                    src={allPhotos[photoIdx]}
+                    alt=""
+                    style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
+                  />
+                  {allPhotos.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => setPhotoIdx(i => (i - 1 + allPhotos.length) % allPhotos.length)}
+                        style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      >
+                        <ChevronLeft size={16} />
+                      </button>
+                      <button
+                        onClick={() => setPhotoIdx(i => (i + 1) % allPhotos.length)}
+                        style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      >
+                        <ChevronRight size={16} />
+                      </button>
+                      <span style={{ position: 'absolute', bottom: '8px', left: '50%', transform: 'translateX(-50%)', fontSize: '11px', color: 'rgba(255,255,255,0.85)', background: 'rgba(0,0,0,0.5)', borderRadius: '6px', padding: '2px 8px' }}>
+                        {photoIdx + 1}/{allPhotos.length}
+                      </span>
+                    </>
+                  )}
+                  <button
+                    onClick={handleRemovePhoto}
+                    style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(239,68,68,0.85)', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Trash2 size={12} />
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Safe area spacer for iOS */}
+        <div style={{ height: 'env(safe-area-inset-bottom, 16px)', minHeight: '16px' }} />
+      </div>
+
+      <style>{`
+        @keyframes slideUp {
+          from { transform: translateY(100%); opacity: 0; }
+          to   { transform: translateY(0);    opacity: 1; }
+        }
+      `}</style>
+    </>,
+    document.body
+  );
+}
+
 // ── Mobile Card View ──────────────────────────────────────────────────────────
 function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stagesToShow: ReadonlyArray<{ id: StageId; label: string }> }) {
   const updateStageStatus = useAppStore(s => s.updateStageStatus);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [modalId, setModalId] = useState<string | null>(null);
+  const [activeStage, setActiveStage] = useState<{ recordId: string; stageId: StageId; stageLabel: string } | null>(null);
 
   const dotColors: Record<StageStatus, React.CSSProperties> = {
     pending:    { background: 'rgba(76,110,245,0.2)', border: '1px solid rgba(76,110,245,0.15)' },
@@ -397,9 +681,19 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
     n_a:        { background: 'rgba(77,166,204,0.2)', border: '1px solid rgba(77,166,204,0.25)' },
   };
 
+  const activeRecord = activeStage ? records.find(r => r.id === activeStage.recordId) : null;
+
   return (
     <>
       <NSDetailModal recordId={modalId} onClose={() => setModalId(null)} />
+      {activeStage && activeRecord && (
+        <MobileStagePanel
+          record={activeRecord}
+          stageId={activeStage.stageId}
+          stageLabel={activeStage.stageLabel}
+          onClose={() => setActiveStage(null)}
+        />
+      )}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         {records.map(record => {
           const applicableStages = record.stages.filter(s => s.status !== 'n_a');
@@ -416,10 +710,11 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
               key={record.id}
               style={{
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #005060 0%, #003f4a 100%)',
-                border: '1px solid rgba(76,110,245,0.12)',
+                background: '#ffffff',
+                border: '1px solid #e8eaef',
                 overflow: 'hidden',
                 transition: 'border-color 0.15s',
+                boxShadow: '0 1px 6px rgba(0,0,0,0.05)',
               }}
             >
               {/* Card header row */}
@@ -433,18 +728,18 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
               >
                 {/* Info */}
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontWeight: 700, color: '#e8edf7', fontFamily: "'Geist Mono', monospace", fontSize: '13px', lineHeight: 1.2 }}>
+                  <p style={{ fontWeight: 700, color: '#1a2332', fontFamily: "'Geist Mono', monospace", fontSize: '13px', lineHeight: 1.2 }}>
                     {record.ns}
                   </p>
-                  <p style={{ color: 'rgba(141,160,200,0.5)', fontSize: '11px', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <p style={{ color: '#9ca3af', fontSize: '11px', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {record.clientName}
                   </p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px' }}>
                     <div style={{
                       width: '5px', height: '5px', borderRadius: '50%', flexShrink: 0,
-                      background: progress === 100 ? '#10b981' : currentStage ? '#ff6b35' : 'rgba(76,110,245,0.4)',
+                      background: progress === 100 ? '#10b981' : currentStage ? '#ff6b35' : '#c7d2fe',
                     }} />
-                    <span style={{ fontSize: '10px', color: 'rgba(141,160,200,0.4)', letterSpacing: '0.04em' }}>
+                    <span style={{ fontSize: '10px', color: '#9ca3af', letterSpacing: '0.04em' }}>
                       {currentLabel}
                     </span>
                   </div>
@@ -457,13 +752,13 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
                     style={{
                       padding: '5px 10px', fontSize: '10px', fontWeight: 600,
                       fontFamily: 'inherit', cursor: 'pointer', borderRadius: '7px',
-                      background: 'rgba(76,110,245,0.1)', border: '1px solid rgba(76,110,245,0.2)',
-                      color: '#748ffc', whiteSpace: 'nowrap',
+                      background: '#eef2ff', border: '1px solid #c7d2fe',
+                      color: '#4c6ef5', whiteSpace: 'nowrap',
                     }}
                   >
                     Detalhes
                   </button>
-                  <div style={{ color: 'rgba(141,160,200,0.3)', transition: 'transform 0.2s', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)' }}>
+                  <div style={{ color: '#d1d5db', transition: 'transform 0.2s', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)' }}>
                     <ChevronDown size={14} />
                   </div>
                 </div>
@@ -472,9 +767,9 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
               {/* Expandable stage grid */}
               {isExpanded && (
                 <div style={{
-                  borderTop: '1px solid rgba(76,110,245,0.08)',
+                  borderTop: '1px solid #f3f4f6',
                   padding: '10px 14px 12px',
-                  background: 'rgba(0,0,0,0.15)',
+                  background: '#fafbfc',
                 }}>
                   <div style={{
                     display: 'grid',
@@ -486,12 +781,20 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
                       if (!stage) return null;
                       const isNA = stage.status === 'n_a';
                       const color = STATUS_COLOR[stage.status];
+                      const hasLoc = STAGES_WITH_LOCATION.has(stageDef.id);
                       const hasExtra = !isNA && !!(stage.location || stage.notes || (stage.locationPhotos?.length ?? 0) > 0 || (stage.notesPhotos?.length ?? 0) > 0);
+                      const photoCount = (stage.locationPhotos?.length ?? 0) + (stage.notesPhotos?.length ?? 0);
                       return (
                         <button
                           key={stageDef.id}
-                          onClick={isNA ? undefined : () => updateStageStatus(record.id, stage.stageId, statusCycle[stage.status])}
-                          title={isNA ? 'Não aplica para este cliente' : undefined}
+                          onClick={isNA ? undefined : () => {
+                            if (hasLoc) {
+                              setActiveStage({ recordId: record.id, stageId: stageDef.id, stageLabel: stageDef.label });
+                            } else {
+                              updateStageStatus(record.id, stage.stageId, statusCycle[stage.status]);
+                            }
+                          }}
+                          title={isNA ? 'Não aplica para este cliente' : hasLoc ? 'Toque para editar' : undefined}
                           style={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px',
                             padding: '8px 4px', borderRadius: '8px',
@@ -506,6 +809,7 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
                               : stage.status === 'in_progress' ? 'rgba(255,107,53,0.25)'
                               : 'rgba(76,110,245,0.1)'}`,
                             transition: 'all 0.15s',
+                            position: 'relative',
                           }}
                         >
                           {isNA ? (
@@ -513,17 +817,21 @@ function MobileCardView({ records, stagesToShow }: { records: NSRecord[]; stages
                           ) : (
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', ...dotColors[stage.status] }} />
                           )}
-                          <span style={{ fontSize: '8px', fontWeight: 600, color: isNA ? 'rgba(77,166,204,0.4)' : stage.status === 'pending' ? 'rgba(141,160,200,0.35)' : color, letterSpacing: '0.04em', textAlign: 'center', lineHeight: 1.2 }}>
+                          <span style={{ fontSize: '8px', fontWeight: 600, color: isNA ? 'rgba(77,166,204,0.4)' : stage.status === 'pending' ? '#a0aec0' : color, letterSpacing: '0.04em', textAlign: 'center', lineHeight: 1.2 }}>
                             {stageDef.label}
                           </span>
                           {hasExtra && (
                             <div style={{ display: 'flex', gap: '2px' }}>
                               {stage.location && <div style={{ width: '3px', height: '3px', borderRadius: '50%', background: '#ff8c42' }} />}
                               {stage.notes && <div style={{ width: '3px', height: '3px', borderRadius: '50%', background: '#748ffc' }} />}
-                              {((stage.locationPhotos?.length ?? 0) + (stage.notesPhotos?.length ?? 0)) > 0 && (
+                              {photoCount > 0 && (
                                 <div style={{ width: '3px', height: '3px', borderRadius: '50%', background: '#10b981' }} />
                               )}
                             </div>
+                          )}
+                          {/* Camera icon for stages with location field */}
+                          {hasLoc && !isNA && (
+                            <Camera size={7} color={photoCount > 0 ? '#10b981' : '#c7d2fe'} />
                           )}
                         </button>
                       );
